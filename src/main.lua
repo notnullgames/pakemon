@@ -26,7 +26,6 @@ lurker.postswap = function()
 end
 
 function love.load()
-  love.graphics.setFont(FontBasic)
   love.mouse.setVisible(false)
   Gamestate.registerEvents()
   Gamestate.switch(StateMenu)

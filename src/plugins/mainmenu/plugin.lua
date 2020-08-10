@@ -2,12 +2,14 @@ local MenuState = {}
 
 local menu = MenuManager()
 
+-- this tracks where the user is in menuItems
 local menuLevel = 1
 
 local notImplemented = function()
     print("not implemented.")
 end
 
+-- the array of all the menus & sub-menus
 local menuItems = {
     {
         { "Current Mood", notImplemented },
@@ -23,6 +25,7 @@ local menuItems = {
     }
 }
 
+-- set the current sub-menu
 function setMenu(num)
     menuLevel = num
     menu:setMenu(menuItems[num])
