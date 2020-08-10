@@ -14,17 +14,17 @@ function MenuState:enter()
         { "Quiz", notImplemented },
         { "About", notImplemented },
         { "Options", notImplemented },
-        { "Quit / Reload", notImplemented }
+        { "Quit / Reload", function() love.event.quit() end }
     }
-    menu.setMenu(menuItems)
+    menu:setMenu(menuItems)
 end
 
 function MenuState:draw()
-    menu.draw()
+    menu:draw()
 end
 
 function MenuState:pressed(button)
-    menu.pressed(button)
+    menu:pressed(button)
 end
 
 return MenuState
