@@ -17,9 +17,16 @@ FontBasic = love.graphics.newFont("assets/monoid.ttf", 10)
 -- I am doing it manually, here, so you can see how it works, in a basic way
 StateMenu = require "plugins.mainmenu.plugin"
 
+-- call current GameState's enter() on hot-reload
+lurker.postswap = function()
+  local gs = Gamestate.current()
+  if gs and gs.enter then
+    gs:enter()
+  end
+end
+
 function love.load()
   love.graphics.setFont(FontBasic)
-  love.keyboard.setKeyRepeat(true)
   love.mouse.setVisible(false)
   Gamestate.registerEvents()
   Gamestate.switch(StateMenu)

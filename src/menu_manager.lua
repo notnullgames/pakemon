@@ -4,11 +4,11 @@ function MenuManager:init(menuItems)
     if menuItems then
         self.setMenu(menuItems)
     end
-    self.currentItem = 1
 end
 
 function MenuManager:setMenu(menuItems)
     self.menuItems = menuItems
+    self.currentItem = 1
 end
 
 function MenuManager:pressed(button)
