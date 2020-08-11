@@ -1,3 +1,6 @@
+-- this sets up global stuff that other people can use
+menuMain = MenuManager()
+
 local MenuState = {}
 
 local function notImplemented()
@@ -12,12 +15,20 @@ local function menuQuit()
     love.event.quit()
 end
 
+local function setMoodSad()
+    showMood("sad")
+end
+
+local function setMoodHappy()
+    showMood("happy")
+end
+
 function MenuState:enter()
     menuMain:setMenus({
         {
-            { "Current Mood", notImplemented },
-            { "Video Archive", notImplemented },
-            { "Quiz", notImplemented },
+            { "Current Mood", showMood },
+            { "Set Mood to sad", setMoodSad },
+            { "Set Mood to happy", setMoodHappy },
             { "About", notImplemented },
             { "Options", menuOptions },
             { "Quit / Reload", menuQuit }
