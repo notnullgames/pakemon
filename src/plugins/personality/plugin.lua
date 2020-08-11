@@ -57,6 +57,7 @@ function Personality:init()
     sad = anim8.newAnimation(g(7,5, 8,5, 9,5), 0.2),
     happy = anim8.newAnimation(g(4,5, 6,5), 0.2),
     curious = anim8.newAnimation(g(1,5, 2,5, 3,5), 0.2),
+    excited = anim8.newAnimation(g(4,2, 5,1, 5,3, 6,1 ), 0.2),
   }
 end
 

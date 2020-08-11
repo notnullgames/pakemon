@@ -46,7 +46,7 @@ local function showLong()
 end
 
 local function showNotificationMood()
-    personality.mood = "curious"
+    personality.mood = "excited"
     personality:notify("You found something, and it made me " .. personality.mood .. ".")
 end
 
