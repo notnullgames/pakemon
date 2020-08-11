@@ -3,6 +3,8 @@ menuMain = MenuManager()
 
 local MenuState = {}
 
+local StateCredits = require "plugins.mainmenu.credits"
+
 local function notImplemented()
     print("not implemented.")
 end
@@ -23,13 +25,17 @@ local function setMoodHappy()
     showMood("happy")
 end
 
+local function showCredits()
+    Gamestate.switch(StateCredits)
+end
+
 function MenuState:enter()
     menuMain:setMenus({
         {
             { "Current Mood", showMood },
             { "Set Mood to sad", setMoodSad },
             { "Set Mood to happy", setMoodHappy },
-            { "About", notImplemented },
+            { "About", showCredits },
             { "Options", menuOptions },
             { "Quit / Reload", menuQuit }
         },
