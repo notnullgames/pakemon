@@ -3,7 +3,7 @@ local MoodState = { mood = "happy" }
 local image, animations
 
 function MoodState:enter()
-    image = love.graphics.newImage("assets/sprites1.png")
+    image = love.graphics.newImage("plugins/mood/moods.png")
     local g = anim8.newGrid(32, 32, image:getWidth(), image:getHeight())
     animations = {
         sad = anim8.newAnimation(g(7,5, 8,5, 9,5), 0.5),
