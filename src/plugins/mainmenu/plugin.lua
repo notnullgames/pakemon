@@ -50,6 +50,10 @@ local function showNotificationMood()
     personality:notify("You found something, and it made me " .. personality.mood .. ".")
 end
 
+local function showLongMenu()
+    menuMain:setCurrentMenu(4)
+end
+
 function MenuState:enter()
     menuMain:setMenus({
         {
@@ -69,8 +73,35 @@ function MenuState:enter()
             { "Show a short notification", showShort },
             { "Show a long notification", showLong },
             { "Show a notification with new mood", showNotificationMood },
+            { "Long Menu tester", showLongMenu },
+        },
+        {
+            { "Option 1", notImplemented },
+            { "Option 2", notImplemented },
+            { "Option 3", notImplemented },
+            { "Option 4", notImplemented },
+            { "Option 5", notImplemented },
+            { "Option 6", notImplemented },
+            { "Option 7", notImplemented },
+            { "Option 8", notImplemented },
+            { "Option 9", notImplemented },
+            { "Option 10", notImplemented },
+            { "Option 11", notImplemented },
+            { "Option 12", notImplemented },
+            { "Option 13", notImplemented },
+            { "Option 14", notImplemented },
+            { "Option 15", notImplemented },
+            { "Option 16", notImplemented },
+            { "Option 17", notImplemented },
+            { "Option 18", notImplemented },
+            { "Option 19", notImplemented },
+            { "Option 20", notImplemented },
         }
     })
+end
+
+function MenuState:update(dt)
+    menuMain:update(dt)
 end
 
 function MenuState:draw()

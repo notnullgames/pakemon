@@ -6,6 +6,7 @@ function MenuManager:init(menuItems, title)
     end
     self:setTitle(title or "Choose one:")
     self.oldMenu = {}
+    self.camera = Camera(160, 120)
 end
 
 -- override the current set of menus
@@ -53,8 +54,17 @@ function MenuManager:pressed(button)
 
     -- back
     if button == 'b' and self.currentMenu > 1 then
+        self.currentItem = 1
         self.currentMenu = table.remove (self.oldMenu, #self.oldMenu)
         SoundBack:play()
+    end
+end
+
+function MenuManager:update(dt)
+    if self.currentItem > 14 then
+        self.camera:lookAt(160, 120 + (self.currentItem - 14) * 15 )
+    else
+        self.camera:lookAt(160, 120)
     end
 end
 
@@ -63,19 +73,24 @@ function MenuManager:draw()
     if not self.menuItems or not self.menuItems[self.currentMenu] then
         return
     end
-
-    love.graphics.setColor(1,1,1,1)
-    love.graphics.setFont(FontHeader)
-    love.graphics.print(self.title, 10, 10)
     
+    self.camera:attach()
     love.graphics.setFont(FontBasic)
-    -- TODO: add a camera to get scrolling working
     for i, menuItem in pairs(self.menuItems[self.currentMenu]) do
         if self.currentItem == i then
             love.graphics.print("•", 10, (i * 15) + 15)
         end
         love.graphics.print(menuItem[1], 20, (i * 15) + 15)
     end
+    self.camera:detach()
+
+    -- this covers up the outside of self.camera area
+    love.graphics.setColor(0,0,0,1)
+    love.graphics.rectangle( "fill", 0, 0, 320, 30 )
+
+    love.graphics.setColor(1,1,1,1)
+    love.graphics.setFont(FontHeader)
+    love.graphics.print(self.title, 10, 10)
 end
 
 return MenuManager
