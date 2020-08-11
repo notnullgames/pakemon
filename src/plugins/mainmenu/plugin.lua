@@ -1,39 +1,35 @@
 local MenuState = {}
 
-local menu = MenuManager()
+local menu
 
--- this tracks where the user is in menuItems
-local menuLevel = 1
-
-local notImplemented = function()
+local function notImplemented()
     print("not implemented.")
 end
 
--- the array of all the menus & sub-menus
-local menuItems = {
-    {
-        { "Current Mood", notImplemented },
-        { "Video Archive", notImplemented },
-        { "Quiz", notImplemented },
-        { "About", notImplemented },
-        { "Options", function() setMenu(2) end },
-        { "Quit / Reload", function() love.event.quit() end }
-    },
-    {
-        { "Option 1", notImplemented },
-        { "Option 2", notImplemented }
-    }
-}
+local function menuOptions()
+    menu:setCurrentMenu(2)
+end
 
--- set the current sub-menu
-function setMenu(num)
-    menuLevel = num
-    menu:setMenu(menuItems[num])
+local function menuQuit()
+    love.event.quit()
 end
 
 function MenuState:enter()
     love.graphics.setFont(FontBasic)
-    setMenu(menuLevel)
+    menu = MenuManager({
+        {
+            { "Current Mood", notImplemented },
+            { "Video Archive", notImplemented },
+            { "Quiz", notImplemented },
+            { "About", notImplemented },
+            { "Options", menuOptions },
+            { "Quit / Reload", menuQuit }
+        },
+        {
+            { "Option 1", notImplemented },
+            { "Option 2", notImplemented }
+        }
+    })
 end
 
 function MenuState:draw()
@@ -42,10 +38,6 @@ end
 
 function MenuState:pressed(button)
     menu:pressed(button)
-    if button == 'b' and menuLevel > 1 then
-        menuLevel = menuLevel - 1
-        setMenu(menuLevel)
-    end
 end
 
 return MenuState

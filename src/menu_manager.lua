@@ -2,39 +2,60 @@ local MenuManager = Class{ }
 
 function MenuManager:init(menuItems)
     if menuItems then
-        self.setMenu(menuItems)
+        self:setMenus(menuItems)
+        self:setCurrentMenu(1)
     end
 end
 
-function MenuManager:setMenu(menuItems)
+-- override the current set of menus
+function MenuManager:setMenus(menuItems)
     self.menuItems = menuItems
-    self.currentItem = 1
 end
 
+-- set the current menu-depth
+function MenuManager:setCurrentMenu(num)
+    self.currentItem = 1
+    self.currentMenu = num
+end
+
+-- use this in parent to pass presed buttons to this lib
 function MenuManager:pressed(button)
     if button == 'up' then
         self.currentItem =  self.currentItem - 1
         if self.currentItem < 1 then
-            self.currentItem = #self.menuItems
+            self.currentItem = #self.menuItems[self.currentMenu]
         end
     end
     if button == 'down' then
         self.currentItem =  self.currentItem + 1
-        if self.currentItem > #self.menuItems then
+        if self.currentItem > #self.menuItems[self.currentMenu] then
             self.currentItem = 1
         end
     end
+    
+    -- OK
     if button == 'a' or button == 'start' then
-        self.menuItems[self.currentItem][2]()
+        self.menuItems[self.currentMenu][self.currentItem][2]()
+    end
+
+    -- back
+    if button == 'b' and self.currentMenu > 1 then
+        self.currentMenu = self.currentMenu - 1
     end
 end
 
+-- use this in parent to pass updates
 function MenuManager:draw()
-    for i, menuItem in pairs(self.menuItems) do
+    if not self.menuItems or not self.menuItems[self.currentMenu] then
+        return
+    end
+    
+    -- TODO: add a camera to get scrolling working
+    for i, menuItem in pairs(self.menuItems[self.currentMenu]) do
         if self.currentItem == i then
             love.graphics.print("•", 10, (i * 15))
         end
-        love.graphics.print(menuItem[1 ], 20, (i * 15))
+        love.graphics.print(menuItem[1], 20, (i * 15))
     end
 end
 
