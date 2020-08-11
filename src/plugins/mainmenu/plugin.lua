@@ -1,7 +1,5 @@
 local MenuState = {}
 
-menuMain = MenuManager()
-
 local function notImplemented()
     print("not implemented.")
 end
