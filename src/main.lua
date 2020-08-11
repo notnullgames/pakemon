@@ -10,9 +10,13 @@ require "inputmap"
 fs = require "fs"
 MenuManager = require "menu_manager"
 
--- this is global fonts for regular stuff
+-- some basic assets for everyone to use
 FontBasic = love.graphics.newFont("assets/monoid.ttf", 10)
 FontHeader = love.graphics.newFont("assets/heavydata.ttf", 15)
+
+SoundBack = love.audio.newSource("assets/back.wav", "static")
+SoundMove = love.audio.newSource("assets/move.wav", "static")
+SoundOk = love.audio.newSource("assets/ok.wav", "static")
 
 -- normally this will be auto-loaded at start from plugins in dir + zip files
 -- I am doing it manually, here, so you can see how it works, in a basic way
