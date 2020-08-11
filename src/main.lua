@@ -22,8 +22,9 @@ SoundOk = love.audio.newSource("assets/ok.wav", "static")
 -- normally this will be auto-loaded at start from plugins in dir + zip files
 -- I am doing it manually, here, so you can see how it works, in a basic way
 -- and because we don't really need a full plugin system, yet
+-- I will need to check if exported interface is a GameState
 StateMenu = require "plugins.mainmenu.plugin"
-StateShowMood = require "plugins.mood.plugin"
+personality = require "plugins.personality.plugin"
 
 -- call current GameState's enter() on hot-reload
 lurker.postswap = function()
@@ -44,6 +45,8 @@ function love.update(dt)
   -- hot-reloading
   lurker.update()
   Timer.update(dt)
+  local gs = Gamestate.current()
+  personality:update(dt)
 end
 
 function input_pressed(button)
@@ -58,14 +61,4 @@ function input_released(button)
   if gs.released then
     gs:released(button)
   end
-end
-
--- call this to show a mood
-function showMood(mood)
-  local oldGs = Gamestate.current()
-  if mood then
-    StateShowMood.mood = mood
-  end
-  Gamestate.switch(StateShowMood)
-  Timer.after(3, function() Gamestate.switch(oldGs) end )
 end

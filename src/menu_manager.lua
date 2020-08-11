@@ -5,6 +5,7 @@ function MenuManager:init(menuItems, title)
         self:setMenus(menuItems)
     end
     self:setTitle(title or "Choose one:")
+    self.oldMenu = {}
 end
 
 -- override the current set of menus
@@ -21,6 +22,7 @@ end
 -- set the current menu-depth
 function MenuManager:setCurrentMenu(num)
     self.currentItem = 1
+    table.insert(self.oldMenu, (self.currentMenu or 0))
     self.currentMenu = num
 end
 
@@ -51,7 +53,7 @@ function MenuManager:pressed(button)
 
     -- back
     if button == 'b' and self.currentMenu > 1 then
-        self.currentMenu = self.currentMenu - 1
+        self.currentMenu = table.remove (self.oldMenu, #self.oldMenu)
         SoundBack:play()
     end
 end
@@ -62,6 +64,7 @@ function MenuManager:draw()
         return
     end
 
+    love.graphics.setColor(1,1,1,1)
     love.graphics.setFont(FontHeader)
     love.graphics.print(self.title, 10, 10)
     
