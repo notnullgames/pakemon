@@ -45,6 +45,11 @@ local function showLong()
     personality:notify("Es irrt der Mensch, wenn er gut gezogen, Wird selbst ein weiser Mann gewogen. Ich bin Ein Teil von jener Kraft, Die stets das Gute schafft. Es irrt der Mensch, wenn er sie beim Kragen hätte. Ich bin von je der Ordnung Freund gewesen. So schreitet in dem engen Bretterhaus (Theater, Bühne) Den ganzen Kreis der Schöpfung aus, Und wandelt mit bedächtger Schnelle Vom Himmel durch die Welt zur Hölle. Es irrt der Mensch, wenn er gut gezogen, Wird selbst ein weiser Mann gewogen. So schreitet in dem engen Bretterhaus (Theater, Bühne) Den ganzen Kreis der Schöpfung aus, Und wandelt mit bedächt'ger Schnelle Vom Himmel durch die Welt zur Hölle. Ich bin von je der Ordnung Freund gewesen. So schreitet in dem engen Bretterhaus (Theater, Bühne) Den ganzen Kreis der Schöpfung aus, Und wandelt mit bedächt'ger Schnelle Vom Himmel durch die Welt zur Hölle! Ich höre schon des Dorfs Getümmel, Hier ist des Volkes wahrer Himmel, Zufrieden jauchzet groß und klein, Hier bin ich nicht; doch viel ist mir bewusst. Es irrt der Mensch, wenn er gut gezogen, Wird selbst ein weiser Mann gewogen. Gewöhnlich glaubt der Mensch, wenn er sie beim Kragen hätte. Und wandelt mit bedächtger Schnelle Vom Himmel durch die Welt zur Hölle.")
 end
 
+local function showNotificationMood()
+    personality.mood = "curious"
+    personality:notify("You found something, and it made me " .. personality.mood .. ".")
+end
+
 function MenuState:enter()
     menuMain:setMenus({
         {
@@ -63,6 +68,7 @@ function MenuState:enter()
             { "Set Mood to happy", setMoodHappy },
             { "Show a short notification", showShort },
             { "Show a long notification", showLong },
+            { "Show a notification with new mood", showNotificationMood },
         }
     })
 end

@@ -52,9 +52,11 @@ function Personality:init()
   self.image = love.graphics.newImage("plugins/personality/personality.png")
   self.image:setFilter('nearest', 'nearest')
   local g = anim8.newGrid(32, 32, self.image:getWidth(), self.image:getHeight())
+  -- TODO: these are basically random. need some better anmimations.
   self.animations = {
     sad = anim8.newAnimation(g(7,5, 8,5, 9,5), 0.2),
-    happy = anim8.newAnimation(g(4,5, 6,5), 0.2)
+    happy = anim8.newAnimation(g(4,5, 6,5), 0.2),
+    curious = anim8.newAnimation(g(1,5, 2,5, 3,5), 0.2),
   }
 end
 
