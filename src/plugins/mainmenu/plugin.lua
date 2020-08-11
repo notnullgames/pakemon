@@ -1,13 +1,13 @@
 local MenuState = {}
 
-local menu
+menuMain = MenuManager()
 
 local function notImplemented()
     print("not implemented.")
 end
 
 local function menuOptions()
-    menu:setCurrentMenu(2)
+    menuMain:setCurrentMenu(2)
 end
 
 local function menuQuit()
@@ -15,7 +15,7 @@ local function menuQuit()
 end
 
 function MenuState:enter()
-    menu = MenuManager({
+    menuMain:setMenus({
         {
             { "Current Mood", notImplemented },
             { "Video Archive", notImplemented },
@@ -32,11 +32,11 @@ function MenuState:enter()
 end
 
 function MenuState:draw()
-    menu:draw()
+    menuMain:draw()
 end
 
 function MenuState:pressed(button)
-    menu:pressed(button)
+    menuMain:pressed(button)
 end
 
 return MenuState

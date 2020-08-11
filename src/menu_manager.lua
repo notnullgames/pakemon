@@ -3,7 +3,6 @@ local MenuManager = Class{ }
 function MenuManager:init(menuItems, title)
     if menuItems then
         self:setMenus(menuItems)
-        self:setCurrentMenu(1)
     end
     self:setTitle(title or "Choose one:")
 end
@@ -11,6 +10,7 @@ end
 -- override the current set of menus
 function MenuManager:setMenus(menuItems)
     self.menuItems = menuItems
+    self:setCurrentMenu(1)
 end
 
 -- override the current title
