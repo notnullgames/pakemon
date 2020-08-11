@@ -10,8 +10,9 @@ require "inputmap"
 fs = require "fs"
 MenuManager = require "menu_manager"
 
--- this is a global font for regular stuff
+-- this is global fonts for regular stuff
 FontBasic = love.graphics.newFont("assets/monoid.ttf", 10)
+FontHeader = love.graphics.newFont("assets/heavydata.ttf", 15)
 
 -- normally this will be auto-loaded at start from plugins in dir + zip files
 -- I am doing it manually, here, so you can see how it works, in a basic way
@@ -26,6 +27,7 @@ lurker.postswap = function()
 end
 
 function love.load()
+  love.graphics.setFont(FontBasic)
   love.mouse.setVisible(false)
   Gamestate.registerEvents()
   Gamestate.switch(StateMenu)

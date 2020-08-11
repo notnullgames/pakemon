@@ -15,7 +15,6 @@ local function menuQuit()
 end
 
 function MenuState:enter()
-    love.graphics.setFont(FontBasic)
     menu = MenuManager({
         {
             { "Current Mood", notImplemented },

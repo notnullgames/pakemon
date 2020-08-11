@@ -1,15 +1,21 @@
 local MenuManager = Class{ }
 
-function MenuManager:init(menuItems)
+function MenuManager:init(menuItems, title)
     if menuItems then
         self:setMenus(menuItems)
         self:setCurrentMenu(1)
     end
+    self:setTitle(title or "Choose one:")
 end
 
 -- override the current set of menus
 function MenuManager:setMenus(menuItems)
     self.menuItems = menuItems
+end
+
+-- override the current title
+function MenuManager:setTitle(title)
+    self.title = title
 end
 
 -- set the current menu-depth
@@ -49,13 +55,17 @@ function MenuManager:draw()
     if not self.menuItems or not self.menuItems[self.currentMenu] then
         return
     end
+
+    love.graphics.setFont(FontHeader)
+    love.graphics.print(self.title, 10, 10)
     
+    love.graphics.setFont(FontBasic)
     -- TODO: add a camera to get scrolling working
     for i, menuItem in pairs(self.menuItems[self.currentMenu]) do
         if self.currentItem == i then
-            love.graphics.print("•", 10, (i * 15))
+            love.graphics.print("•", 10, (i * 15) + 15)
         end
-        love.graphics.print(menuItem[1], 20, (i * 15))
+        love.graphics.print(menuItem[1], 20, (i * 15) + 15)
     end
 end
 
