@@ -5,7 +5,6 @@ lurker = require "lib.lurker.lurker"
 Gamestate = require "lib.hump.gamestate"
 Camera = require "lib.hump.camera"
 Class = require "lib.hump.class"
-
 require "inputmap"
 fs = require "fs"
 MenuManager = require "menu_manager"

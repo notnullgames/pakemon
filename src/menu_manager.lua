@@ -31,6 +31,7 @@ function MenuManager:pressed(button)
         if self.currentItem < 1 then
             self.currentItem = #self.menuItems[self.currentMenu]
         end
+        SoundMove:stop()
         SoundMove:play()
     end
     if button == 'down' then
@@ -38,6 +39,7 @@ function MenuManager:pressed(button)
         if self.currentItem > #self.menuItems[self.currentMenu] then
             self.currentItem = 1
         end
+        SoundMove:stop()
         SoundMove:play()
     end
     
