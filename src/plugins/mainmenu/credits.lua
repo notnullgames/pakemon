@@ -17,6 +17,8 @@ The cool song you are hearing right now is by Strobe. It's called "Android Assem
 
 TODO: add all the other things that get used in this app.
 
+pokemon animations came from here: https://imgur.com/a/SOiOU
+
 
 
 
@@ -37,7 +39,7 @@ end
 function CreditState:update(dt)
   offset = offset + (dt * 20)
   -- manually stop scrolling when it hits height
-  if offset < 380 then
+  if offset < 420 then
     camera:move(0, dt * 20)
   end
 end

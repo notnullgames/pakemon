@@ -1,5 +1,6 @@
 -- these are global libraries you can use in your own states
 globtopattern = require "lib.globtopattern"
+anim8 = require "lib.anim8"
 json = require "lib.json"
 lurker = require "lib.lurker.lurker"
 Gamestate = require "lib.hump.gamestate"
