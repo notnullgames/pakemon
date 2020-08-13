@@ -24,6 +24,7 @@ SoundOk = love.audio.newSource("assets/ok.wav", "static")
 -- and because we don't really need a full plugin system, yet
 -- I will need to check if exported interface is a GameState
 StateMenu = require "plugins.mainmenu.plugin"
+StateAirplanes = require "plugins.airplanes.plugin"
 personality = require "plugins.personality.plugin"
 
 -- call current GameState's enter() on hot-reload
@@ -38,7 +39,8 @@ function love.load()
   love.graphics.setFont(FontBasic)
   love.mouse.setVisible(false)
   Gamestate.registerEvents()
-  Gamestate.switch(StateMenu)
+  -- Gamestate.switch(StateMenu)
+  Gamestate.switch(StateAirplanes)
 end
 
 function love.update(dt)  

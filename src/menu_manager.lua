@@ -7,6 +7,7 @@ function MenuManager:init(menuItems, title)
     self:setTitle(title or "Choose one:")
     self.oldMenu = {}
     self.camera = Camera(160, 120)
+    self.currentItem = 1
 end
 
 -- override the current set of menus
@@ -75,6 +76,7 @@ function MenuManager:draw()
     end
     
     self.camera:attach()
+    love.graphics.setColor(1,1,1,1)
     love.graphics.setFont(FontBasic)
     for i, menuItem in pairs(self.menuItems[self.currentMenu]) do
         if self.currentItem == i then
