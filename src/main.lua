@@ -39,8 +39,7 @@ function love.load()
   love.graphics.setFont(FontBasic)
   love.mouse.setVisible(false)
   Gamestate.registerEvents()
-  -- Gamestate.switch(StateMenu)
-  Gamestate.switch(StateAirplanes)
+  Gamestate.switch(StateMenu)
 end
 
 function love.update(dt)  

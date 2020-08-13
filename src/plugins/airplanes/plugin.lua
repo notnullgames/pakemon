@@ -22,6 +22,7 @@ local function updatePlanes()
 end
 
 function StateAirplanes:enter()
+  -- needs this in path & permissions
   p = assert(io.popen('dump1090 --net --quiet'))
 end
 

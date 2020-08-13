@@ -54,6 +54,10 @@ local function showLongMenu()
     menuMain:setCurrentMenu(4)
 end
 
+local function menuTrackPlanes()
+    Gamestate.switch(StateAirplanes)
+end
+
 function MenuState:enter()
     menuMain:setMenus({
         {
@@ -74,6 +78,7 @@ function MenuState:enter()
             { "Show a long notification", showLong },
             { "Show a notification with new mood", showNotificationMood },
             { "Long Menu tester", showLongMenu },
+            { "Track Planes", menuTrackPlanes },
         },
         {
             { "Option 1", notImplemented },
