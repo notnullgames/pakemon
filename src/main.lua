@@ -10,6 +10,7 @@ Timer = require "lib.hump.timer"
 require "inputmap"
 fs = require "fs"
 MenuManager = require "menu_manager"
+request = require "lib.luajit-request"
 
 -- some basic assets for everyone to use
 FontBasic = love.graphics.newFont("assets/monoid.ttf", 10)

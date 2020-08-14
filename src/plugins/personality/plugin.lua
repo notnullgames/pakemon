@@ -49,15 +49,17 @@ local function roundrect(mode, x, y, width, height, xround, yround)
 end
 
 function Personality:init()
-  self.image = love.graphics.newImage("plugins/personality/personality.png")
+  self.image = love.graphics.newImage("plugins/personality/gally.png")
   self.image:setFilter('nearest', 'nearest')
   local g = anim8.newGrid(32, 32, self.image:getWidth(), self.image:getHeight())
   -- TODO: these are basically random. need some better anmimations.
   self.animations = {
-    sad = anim8.newAnimation(g(7,5, 8,5, 9,5), 0.2),
-    happy = anim8.newAnimation(g(4,5, 6,5), 0.2),
-    curious = anim8.newAnimation(g(1,5, 2,5, 3,5), 0.2),
-    excited = anim8.newAnimation(g(4,2, 5,1, 5,3, 6,1 ), 0.2),
+    happy = anim8.newAnimation(g('1-6', 1), 0.2),
+    excited = anim8.newAnimation(g('1-6', 2), 0.2),
+    curious = anim8.newAnimation(g('1-6', 3), 0.2),
+    lazy = anim8.newAnimation(g('1-6', 4), 0.2),
+    sleepy = anim8.newAnimation(g('1-6', 5), 0.2),
+    sad = anim8.newAnimation(g('1-6', 4), 0.2),
   }
 end
 

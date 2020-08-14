@@ -1,7 +1,5 @@
 local StateAirplanes = {}
 
-local http = require "socket.http"
-
 local p
 local planes = {}
 local interval = 0
@@ -11,12 +9,10 @@ local menuPlanes = MenuManager()
 
 local function updatePlanes()
   local res = {}
-  local r, c, h, s = http.request{
-    url = "http://localhost:8080/dump1090/data.json",
-    sink = ltn12.sink.table(res)
-  }
-  if res and res[1] then
-    planes = json.decode(res[1])
+  local r = request.send(url)
+  if r then
+    planes = json.decode(r.body)
+    print(r.body)
   end
 end
 

@@ -17,7 +17,8 @@ The cool song you are hearing right now is by Strobe. It's called "Android Assem
 
 TODO: add all the other things that get used in this app.
 
-pokemon animations came from here: https://imgur.com/a/SOiOU
+Our cat mascot was made by Terry Ritchie.
+
 
 
 

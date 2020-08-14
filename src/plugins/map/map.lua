@@ -1,5 +1,3 @@
-local request = require "lib.luajit-request"
-
 local map = {}
 
 local function encodeChar(chr)
