@@ -25,6 +25,7 @@ SoundOk = love.audio.newSource("assets/ok.wav", "static")
 -- I will need to check if exported interface is a GameState
 StateMenu = require "plugins.mainmenu.plugin"
 StateAirplanes = require "plugins.airplanes.plugin"
+StateMapDemo = require "plugins.map.plugin"
 personality = require "plugins.personality.plugin"
 
 -- call current GameState's enter() on hot-reload

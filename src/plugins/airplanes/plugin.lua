@@ -59,8 +59,9 @@ function StateAirplanes:draw()
     local y = 0
     for i,v in pairs(currentPlane) do
       if i ~= "hex" then
-        love.graphics.print(i .. ": " .. v, 10, 20 + (y * 12))
+        love.graphics.print(i .. ": " .. v, 10, 24 + (y * 12))
       end
+      y = y + 1
     end
   else
     menuPlanes:draw()
