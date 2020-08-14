@@ -16,19 +16,22 @@ local function updatePlanes()
   end
 end
 
+local function handleExit()
+  io.popen('killall -9 dump1090')
+  p:close()
+end
+
 function StateAirplanes:enter()
   -- needs this in path & permissions
   p = assert(io.popen('dump1090 --net --quiet'))
 end
 
 function StateAirplanes:leave()
-  io.popen('killall -9 dump1090')
-  p:close()
+  handleExit()
 end
 
 function StateAirplanes:quit()
-  io.popen('killall -9 dump1090')
-  p:close()
+  handleExit()
 end
 
 function StateAirplanes:update(dt)
