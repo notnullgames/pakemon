@@ -22,7 +22,12 @@ function StateAirplanes:enter()
 end
 
 function StateAirplanes:leave()
-  -- TODO: figure out why it hangs on exit
+  io.popen('killall -9 dump1090')
+  p:close()
+end
+
+function StateAirplanes:quit()
+  io.popen('killall -9 dump1090')
   p:close()
 end
 
