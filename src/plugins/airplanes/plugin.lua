@@ -17,7 +17,6 @@ local function updatePlanes()
   }
   if res and res[1] then
     planes = json.decode(res[1])
-    print(res[1])
   end
 end
 
@@ -26,6 +25,7 @@ function StateAirplanes:enter()
 end
 
 function StateAirplanes:leave()
+  -- TODO: figure out why it hangs on exit
   p:close()
 end
 
@@ -37,6 +37,7 @@ function StateAirplanes:update(dt)
       p=""
     end
     menuPlanes:setTitle(#planes .. " plane" .. p .. " found.")
+    -- TODO: check that it's really differnt so it doesn't reset menu
     local menu = {}
     for i,v in pairs(planes) do
       table.insert(menu, {v.hex, function() currentPlane = v end })
@@ -53,18 +54,13 @@ function StateAirplanes:draw()
     love.graphics.setFont(FontHeader)
     love.graphics.print(currentPlane.hex, 10, 10)
     love.graphics.setFont(FontBasic)
-    -- squak
-    -- flight
-    -- lat
-    -- lon
-    -- validposition
-    -- altitude
-    -- vert_rate
-    -- track
-    -- validtrack
-    -- speed
-    -- messages
-    -- seen
+
+    local y = 0
+    for i,v in pairs(currentPlane) do
+      if i ~= "hex" then
+        love.graphics.print(i .. ": " .. v, 10, 20 + (y * 12))
+      end
+    end
   else
     menuPlanes:draw()
   end
