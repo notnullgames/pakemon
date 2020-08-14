@@ -23,7 +23,7 @@ end
 function map:getMapUrl(markers)
   local url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/"
   for i,v in pairs(markers) do
-    url = url .. "url-" .. encodeURI("https://dynamic-icons.vercel.app/api?alt="..v[3].."&dir="..v[4].."&hex="..v[5]) .. "(" .. v[1] .. "," .. v[2] .. ")"
+    url = url .. "url-" .. encodeURI("https://dynamic-icons.vercel.app/api?alt="..v[3].."&rot="..v[4].."&hex="..v[5]) .. "(" .. v[1] .. "," .. v[2] .. ")"
     if i ~= #markers then
       url = url .. ","
     end
