@@ -21,7 +21,7 @@ These other projects are related:
 
 ### plugins
 
-If you prefix your plugin repo-name with `pakeon-plugin-`, it'll show up on the device for easy install, under "Community Plugins".
+If you prefix your plugin repo-name with `pakemon-plugin-`, it'll show up on the device for easy install, under "Community Plugins".
 
 **TODO**
 
