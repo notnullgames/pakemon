@@ -2,7 +2,6 @@
 
 Short for "packet monitor/monster". Gamified fun device/platform for hacking technology around you.
 
-
 ## software
 
 The Pakémon runs [love2d](https://love2d.org/) to manage a collection of activities. A few libraries are available for use in mini-games or activities, so you can keep the samne look/feel, if you want, but also feel free to go crazy and make yours completely differnt than the rest. Think of it as the geocities of hacking toys.
@@ -131,22 +130,6 @@ level up your buddy for a special ability.
 * Then there's the ones that sleep until their buddies hit them up to party. 
 
 ### Less abstract 
-* hot key sequence to switch "game" modes. 
-* write a massive portable C library that wraps utils that can be used in a high level languge 
- * like this pseudo code: 
-
-```lua
-while gets_signals(430mhz) = i_want; then 
-  packat_monster.signal(430mhz).add(happy(2)) 
- else 
-  packet_monster.signal(430mhz).add(sad(2)) 
-end
-
-if packet_monster.signal(430mhz.is(mood) = "happy" ; then
-  packet_monster.signal(430mhz).special_move(garageDoor.at(waypoint))
-fi
-```
-
 * things should be pretty auto, with an optional manual mode out of the box.
 * there should be a "bring your own UX" potential.  
 
@@ -159,12 +142,14 @@ As a note: there are a ton of tools out there, some do the same thing, but in a 
 A best solution could be to find projects with a good track record of up-stream development, and 
 use those. 
 
+#### current
+* [dump1090](https://github.com/adsbxchange/dump1090-mutability)
 
-* [nmap]() Plate, and flatware. 
-* [metasploit]() bread and butter
-* [bettercap]() wireless packet capture
-* [p0f](https://lcamtuf.coredump.cx/p0f3) A passive packet fingerprint scanner. 
-[unofficial github](https://github.com/p0f/p0f)
+
+#### potenial 
+
+* [metasploit](https://github.com/rapid7/metasploit-framework) 
+* [bettercap](https://github.com/bettercap/bettercap) wireless packet capture
 
 
 * [rpitx](https://github.com/F5OEO/rpitx) SDR built with only a RPi! 
@@ -179,20 +164,11 @@ use those.
  * DASH7 python support[pyd7a](https://github.com/MOSAIC-LoPoW/pyd7a)
 
 
-
 ## Libs
 * [libpcap]()
 
 ### UI
 * [love2d](https://love2d.org/)
-* [termbox](https://github.com/nsf/termbox)
-
-## Issues
-[DeepExploit](https://github.com/13o-bbr-bbq/machine_learning_security/tree/master/DeepExploit)
-has a few issues scanning all the types of networks available and only works from certain vectors.
-A solution could be better info gathering AI, perhaps "3 modes"; "passive, normal, aggresive and custom".
-
-~~will not talk about plan9/inferno OS~~
 
 # Resources: 
 
@@ -201,6 +177,7 @@ A solution could be better info gathering AI, perhaps "3 modes"; "passive, norma
 
 ## AI
 
+* [DeepExploit](https://github.com/13o-bbr-bbq/machine_learning_security/tree/master/DeepExploit)
 * [an AI challange](https://aichallenge.cyberweek.ae/) Working on Deep Exploit
 * https://towardsdatascience.com/artificial-intelligence-framework-a-visual-introduction-to-machine-learning-and-ai-d7e36b304f87
 * [A Master Attack Methodology for an AI-Based Automated Attack Planner for Smart Cities](https://scienceimpact.mit.edu/sites/default/files/documents/08449268.pdf)
@@ -217,8 +194,11 @@ A solution could be better info gathering AI, perhaps "3 modes"; "passive, norma
 * [flipper one / flipper zero](https://flipperzero.one/)
 * [hackRF + custom firmware (current: Mayhem) and UI](https://github.com/eried/portapack-mayhem) 
 
+
+#### Full kits will need modifications
 [GPi  case]()
 [Piboy DMG (unreleased)](https://www.experimentalpi.com/PiBoy-DMG--Full-Kit_p_18.html)
+* (GPIO fully used; maybe attach screen via HDMI)
 [GameBoy Zero EZ-GBA DIY kiy](https://www.renegadelabs.net/product/gameboy-zero-ez-gba-diy-kit/)
 [PiGRRL](https://learn.adafruit.com/pigrrl-zero)
 
