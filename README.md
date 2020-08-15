@@ -13,6 +13,19 @@ The Pakémon runs [love2d](https://love2d.org/) to manage a collection of activi
 
 **TODO**: document dev-tools
 
+## related
+
+These other projects are related:
+
+### plugins
+
+**TODO**
+
+### tools
+
+* [pakemon-personalitybuilder](https://github.com/notnullgames/pakemon-personalitybuilder) - tools to build a new personality for Pakémon
+* [pakemon-icon-server](https://github.com/notnullgames/pakemon-icon-server) - this is used to create icon images for maps with scaling & rotation
+
 ## ideas
 
 These are just a colleciton of ideas, and could change drastically.
