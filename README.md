@@ -81,7 +81,7 @@ display, joystick, buttons, cc1111, standard rtl-srd, (some unknown NFC)
 hackRF, solar-power 
 
 ## Screens:
-e-paper
+cheap LCD, e-paper
 
 ## Batteries:
 
