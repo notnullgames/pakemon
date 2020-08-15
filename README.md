@@ -5,7 +5,7 @@ Short for "pacekt monitor/monster". Gamified fun device/platform for hacking tec
 
 ## software
 
-The Pakémon runs [love2d](https://love2d.org/) to manage a collection of activities. A few libraries are available for use in mini-games or activitieds, so you can keep the samne look/feel, if you want, but also feel free to go crazy and make yours completely differnt than the rest. Think of it as the geocities of hacking toys.
+The Pakémon runs [love2d](https://love2d.org/) to manage a collection of activities. A few libraries are available for use in mini-games or activities, so you can keep the samne look/feel, if you want, but also feel free to go crazy and make yours completely differnt than the rest. Think of it as the geocities of hacking toys.
 
 **TODO**: document dependencies
 
