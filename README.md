@@ -1,6 +1,6 @@
 # Pakémon
 
-Short for "pacekt monitor/monster". Gamified fun device/platform for hacking technology around you.
+Short for "packet monitor/monster". Gamified fun device/platform for hacking technology around you.
 
 
 ## software
