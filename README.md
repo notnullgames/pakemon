@@ -13,11 +13,15 @@ The Pakémon runs [love2d](https://love2d.org/) to manage a collection of activi
 
 **TODO**: document dev-tools
 
+**TODO**: document making a few types of plugins
+
 ## related
 
 These other projects are related:
 
 ### plugins
+
+If you prefix your plugin repo-name with `pakeon-plugin-`, it'll show up on the device for easy install, under "Community Plugins".
 
 **TODO**
 
