@@ -21,7 +21,7 @@ end
 
 -- do your input-handling here
 function StateWelcome:pressed(button)
-  if button == "b" or button == "a" or button == "start" then
+  if button == "b" or button == "a" or button == "start" or button == "start" then
     Gamestate.switch(StateMainMenu)
   end
 end

@@ -13,6 +13,10 @@ function StateCityDemo:enter()
   song:play()
 end
 
+function StateCityDemo:leave()
+  song:stop()
+end
+
 local timefar = 0
 local timeback = 0
 local timefore = 0
@@ -45,9 +49,9 @@ function StateCityDemo:draw()
   love.graphics.pop()
 end
 
+-- do your input-handling here
 function StateCityDemo:pressed(button)
-  if button == "b" then
-    song:stop()
+  if button == "b" or button == "a" or button == "start" or button == "start" then
     Gamestate.switch(StateMainMenu)
   end
 end
