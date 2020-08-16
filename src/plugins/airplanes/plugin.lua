@@ -9,5 +9,4 @@ function PluginPlane:load()
     plugins.menu.main:addItem("Show Map", function() Gamestate.switch(StateMapDemo) end, 2)
 end
 
-
 return PluginPlane
