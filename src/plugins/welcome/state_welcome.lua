@@ -1,6 +1,6 @@
 local StateWelcome = {}
 
-local logo = love.graphics.newImage("plugins/welcome/notnullgames.png")
+local logo = love.graphics.newImage("plugins/welcome/logo-white.png")
 local voice = love.audio.newSource("plugins/welcome/notnullgames.ogg", "stream")
 
 logo:setFilter('nearest', 'nearest')
@@ -16,15 +16,12 @@ end
 
 -- do your draw calls here
 function StateWelcome:draw()
-  love.graphics.push()
-  love.graphics.scale(4, 4)
-  love.graphics.draw( logo, 8.5, -2)
-  love.graphics.pop()
+  love.graphics.draw( logo, 50, 10)
 end
 
 -- do your input-handling here
 function StateWelcome:pressed(button)
-  if button == "b" then
+  if button == "b" or button == "a" or button == "start" then
     Gamestate.switch(StateMainMenu)
   end
 end
