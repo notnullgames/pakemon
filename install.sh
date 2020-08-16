@@ -3,6 +3,7 @@
 # This is the top-level installer for pakemon
 
 echo "Installing dependencies"
+sudo apt-get update
 sudo apt-get install -y --no-install-recommends git libcurl4-gnutls-dev love
 
 if [ -d "/opt/pakemon" ]; then

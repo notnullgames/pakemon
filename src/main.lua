@@ -1,33 +1,43 @@
 -- these are global libraries you can use in your own states
-globtopattern = require "lib.globtopattern"
 anim8 = require "lib.anim8"
-json = require "lib.json"
-lurker = require "lib.lurker.lurker"
-Gamestate = require "lib.hump.gamestate"
 Camera = require "lib.hump.camera"
 Class = require "lib.hump.class"
-Timer = require "lib.hump.timer"
-require "inputmap"
-fs = require "fs"
-MenuManager = require "menu_manager"
+fs = require "lib.fs"
+Gamestate = require "lib.hump.gamestate"
+globtopattern = require "lib.globtopattern"
+json = require "lib.json"
+lurker = require "lib.lurker.lurker"
+map = require "lib.map"
 request = require "lib.luajit-request"
+require "lib.inputmap"
+Timer = require "lib.hump.timer"
+require "lib.utils"
 
--- some basic assets for everyone to use
+-- some basic fonts for everyone to use
 FontBasic = love.graphics.newFont("assets/monoid.ttf", 10)
 FontHeader = love.graphics.newFont("assets/heavydata.ttf", 15)
 
-SoundBack = love.audio.newSource("assets/back.wav", "static")
-SoundMove = love.audio.newSource("assets/move.wav", "static")
-SoundOk = love.audio.newSource("assets/ok.wav", "static")
 
--- normally this will be auto-loaded at start from plugins in dir + zip files
--- I am doing it manually, here, so you can see how it works, in a basic way
--- and because we don't really need a full plugin system, yet
--- I will need to check if exported interface is a GameState
-StateMenu = require "plugins.mainmenu.plugin"
-StateAirplanes = require "plugins.airplanes.plugin"
-StateMapDemo = require "plugins.map.plugin"
-personality = require "plugins.personality.plugin"
+-- staret of credits
+local creditsApp = [[
+  was made possible by the labor of love of many people.
+  
+  Konsumer & Clout made a lot of the code & graphics.
+  
+  Love2D provides the input/sound/graphics engine.
+  
+  The cool song you are hearing right now is by Strobe. It's called "Android Assembled". Go check out their other awesome work on the mod archive.
+  
+]]
+
+-- prototype for plugin system
+-- TODO: eventually this will be auto-loaded from plugins/ and ~/.pakemon/*.zip
+-- these ones should be pre-loaded in correct order, though
+plugins = {}
+plugins.menu = require "plugins.menu.plugin"
+plugins.credits = require "plugins.credits.plugin"
+plugins.personality = require "plugins.personality.plugin"
+plugins.airplanes = require "plugins.airplanes.plugin"
 
 -- call current GameState's enter() on hot-reload
 lurker.postswap = function()
@@ -40,16 +50,47 @@ end
 function love.load()
   love.graphics.setFont(FontBasic)
   love.mouse.setVisible(false)
-  Gamestate.registerEvents()
-  Gamestate.switch(StateMenu)
+  -- I register with no events, so I can manually call them in my own callbacks (in the order I want)
+  Gamestate.registerEvents({})
+  -- add credit preamble
+  plugins.credits.credits = creditsApp
+  
+  -- demos sub-menu on menu #2
+  plugins.menu.main:addMenu({})
+
+  -- load initial states for things
+  for i,plugin in pairs(plugins) do
+    if plugin.load then
+      plugin:load()
+    end
+  end
+
+  -- add top-level menus
+  plugins.menu.main:addItem("Demos", function() plugins.menu.main:setCurrentMenu(2) end)
+  plugins.menu.main:addItem("Quit", function() love.event.quit() end)
 end
 
 function love.update(dt)  
   -- hot-reloading
+  Gamestate.update(dt)
   lurker.update()
   Timer.update(dt)
-  local gs = Gamestate.current()
-  personality:update(dt)
+  -- if a plugin has update() call it, for off-screen updates
+  for i,plugin in pairs(plugins) do
+    if plugin.update then
+      plugin:update(dt)
+    end
+  end
+end
+
+function love.draw()
+  Gamestate.draw()
+  -- if a plugin has draw() call it
+  for i,plugin in pairs(plugins) do
+    if plugin.draw then
+      plugin:draw(dt)
+    end
+  end
 end
 
 function input_pressed(button)

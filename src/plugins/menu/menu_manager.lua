@@ -1,13 +1,17 @@
+-- globals that other things can use
+SoundBack = love.audio.newSource("plugins/menu/assets/back.wav", "static")
+SoundMove = love.audio.newSource("plugins/menu/assets/move.wav", "static")
+SoundOk = love.audio.newSource("plugins/menu/assets/ok.wav", "static")
+
 local MenuManager = Class{ }
 
 function MenuManager:init(menuItems, title)
-    if menuItems then
-        self:setMenus(menuItems)
-    end
-    self:setTitle(title or "Choose one:")
     self.oldMenu = {}
+    self.menuItems = menuItems or {{}}
+    self.title = title or "Choose one:"
     self.camera = Camera(160, 120)
     self.currentItem = 1
+    self.currentMenu = 1
 end
 
 -- override the current set of menus
@@ -27,6 +31,23 @@ function MenuManager:setCurrentMenu(num)
     table.insert(self.oldMenu, (self.currentMenu or 0))
     self.currentMenu = num
 end
+
+-- add a single item to menu
+function MenuManager:addItem(text, callback, menuId)
+    if menuId == nil then
+        menuId = 1
+    end
+    if callback == nil then
+        callback = function() print("No callback: " .. text) end
+    end
+    table.insert(self.menuItems[menuId], { text, callback })
+end
+
+-- add a menu to menu
+function MenuManager:addMenu(menu)
+    table.insert(self.menuItems, menu)
+end
+
 
 -- use this in parent to pass presed buttons to this lib
 function MenuManager:pressed(button)

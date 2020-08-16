@@ -1,23 +1,5 @@
 local map = {}
 
-local function encodeChar(chr)
-    return string.format("%%%X",string.byte(chr))
-end
-
--- these should probly go inshared util-lib
-function downloadImage(url)
-  local r = request.send(url)
-  local filedata = love.filesystem.newFileData(r.body, 'map.png')
-	local imagedata = love.image.newImageData(filedata)
-  local image = love.graphics.newImage(imagedata)
-  return image
-end
-
-function encodeURI(str)
-    local output, t = string.gsub(str,"[^%w]",encodeChar)
-    return output
-end
-
 function map:getMapUrl(markers)
   local url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/"
   for i,v in pairs(markers) do

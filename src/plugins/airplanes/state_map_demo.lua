@@ -1,7 +1,5 @@
 local StateMapDemo = {}
 
-local map = require "plugins.map.map"
-
 local image
 
 function StateMapDemo:enter()
@@ -22,7 +20,7 @@ end
 
 function StateMapDemo:pressed(button)
   if button == "b" then
-    Gamestate.switch(StateMenu)
+    Gamestate.switch(StateMainMenu)
   end
 end
 
