@@ -1,15 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 
 # This is the top-level installer for pakemon
 
 echo "Installing dependencies"
-sudo apt-get install -y git libcurl4
+sudo apt-get install -y --no-install-recommends git libcurl4
 sudo ln -s /usr/lib/x86_64-linux-gnu/libcurl.so.4 /usr/lib/x86_64-linux-gnu/libcurl.so
 
-echo "Installing pakemon"
-sudo git clone clone -–depth 1 https://github.com/notnullgames/pakemon.git /opt/pakemon
+if [ -d "/opt/pakemon" ]; then
+    cd /opt/pakemon
+    echo "Updating pakemon"
+    sudo git pull
+else
+    echo "Installing pakemon"
+    sudo git clone --depth 1 https://github.com/notnullgames/pakemon.git /opt/pakemon
+fi
 
-echo "Setting permissions to current user"
-sudo chown -R $UID:$GID /opt/pakemon
+cd /opt/pakemon
 
-# TOOD: loop through plugins and install them, too
+for plugin in src/plugins/*/setup.sh; do
+    $plugin
+done
