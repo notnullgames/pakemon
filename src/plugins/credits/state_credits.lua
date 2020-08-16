@@ -4,6 +4,7 @@ local camera
 local offset
 
 local song = love.audio.newSource("plugins/credits/assets/strobe_-_android_assembled.xm", "stream")
+song:setLooping(true)
 
 -- this shows at bottom of credits
 local endMessage = [[
@@ -47,7 +48,7 @@ end
 function StateCredit:draw()
   camera:attach()
   love.graphics.printf("Pakémon", FontHeader, 10, 0, 300, "center")
-  love.graphics.printf(plugins.credits.credits .. endMessage, FontBasic, 10, 30, 300, "center")
+  love.graphics.printf(plugins.credits.credits .. endMessage, FontBasic, 0, 30, 300, "center")
   camera:detach()
 end
 

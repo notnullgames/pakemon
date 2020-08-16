@@ -7,6 +7,7 @@ local far_buildings = love.graphics.newImage("plugins/city_demo/far-buildings.pn
 local back_buildings = love.graphics.newImage("plugins/city_demo/back-buildings.png")
 local foreground = love.graphics.newImage("plugins/city_demo/foreground.png")
 local song = love.audio.newSource("plugins/credits/assets/strobe_-_android_assembled.xm", "stream")
+song:setLooping(true)
 
 function StateCityDemo:enter()
   song:play()
