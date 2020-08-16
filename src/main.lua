@@ -26,7 +26,7 @@ local creditsApp = [[
   
   Love2D provides the input/sound/graphics engine.
   
-  The cool song you are hearing right now is by Strobe. It's called "Android Assembled". Go check out their other awesome work on the mod archive.
+  The cool song you are hearing right now is by Strobe. It's called "Android Assembled". Go check out their other awesome work on the mod-archive.
   
 ]]
 

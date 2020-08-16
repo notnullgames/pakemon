@@ -7,7 +7,7 @@ local title = love.graphics.newImage("plugins/intro/title.png")
 local far_buildings = love.graphics.newImage("plugins/intro/far-buildings.png")
 local back_buildings = love.graphics.newImage("plugins/intro/back-buildings.png")
 local foreground = love.graphics.newImage("plugins/intro/foreground.png")
-local song = love.audio.newSource("plugins/credits/assets/strobe_-_android_assembled.xm", "stream")
+local song = love.audio.newSource("plugins/intro/the_golden_ages.mod", "stream")
 
 song:setLooping(true)
 
@@ -23,6 +23,7 @@ function StateCity:enter()
   timefore = 0
   down = -34
   soundplayed = false
+  song:play()
 end
 
 function StateCity:leave()
@@ -35,7 +36,7 @@ function StateCity:update(dt)
   timefore = timefore + (dt * speed * 8)
   
   if down < 60 then
-    down = down + (dt * speed * 20 )
+    down = down + (dt * speed * 1.6 )
   elseif not soundplayed then
     SoundMove:play()
     soundplayed = true
@@ -71,6 +72,11 @@ end
 
 function StateCity:pressed(button)
   if button == "start" then
+    song:stop()
+    SoundOk:play()
+    Gamestate.switch(StateMainMenu)
+  end
+  if button == "a" or button == "b" then
     song:stop()
     SoundOk:play()
     Gamestate.switch(StateMainMenu)
