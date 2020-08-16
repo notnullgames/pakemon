@@ -11,10 +11,6 @@ local song = love.audio.newSource("plugins/credits/assets/strobe_-_android_assem
 
 song:setLooping(true)
 
-function StateCity:enter()
- -- song:play()
-end
-
 local timefar
 local timeback
 local timefore
@@ -27,6 +23,10 @@ function StateCity:enter()
   timefore = 0
   down = -34
   soundplayed = false
+end
+
+function StateCity:leave()
+  plugins.personality.mood = "happy"
 end
 
 function StateCity:update(dt)
