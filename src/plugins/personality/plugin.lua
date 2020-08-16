@@ -53,6 +53,8 @@ function PluginPersonality:load()
   plugins.menu.main:addItem("Show a short notification", demoNotifyShort, 2)
   plugins.menu.main:addItem("Show a long notification", demoNotifyLong, 2)
   plugins.menu.main:addItem("Show a notification with new mood", demoNotifyMood, 2)
+
+  plugins.credits:add("The cat avatars came are from Terry Ritchie, modified by Clout.")
 end
 
 -- update the animation icon, in background

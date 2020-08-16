@@ -11,7 +11,7 @@ function PluginCredits:load()
 end
 
 function PluginCredits:add(credit)
-    self.credits = self.credits .. "\n" .. credit
+    self.credits = self.credits .. "\n\n" .. credit
 end
 
 return PluginCredits
