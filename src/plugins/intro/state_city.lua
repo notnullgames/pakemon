@@ -15,12 +15,19 @@ function StateCity:enter()
  -- song:play()
 end
 
-local timefar = 0
-local timeback = 0
-local timefore = 0
-local down = -34
+local timefar
+local timeback
+local timefore
+local down
+local soundplayed
 
-local soundplayed = false
+function StateCity:enter()
+  timefar = 0
+  timeback = 0
+  timefore = 0
+  down = -34
+  soundplayed = false
+end
 
 function StateCity:update(dt)
   timefar = timefar + (dt * speed)
