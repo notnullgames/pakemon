@@ -38,6 +38,7 @@ plugins.menu = require "plugins.menu.plugin"
 plugins.credits = require "plugins.credits.plugin"
 plugins.personality = require "plugins.personality.plugin"
 plugins.airplanes = require "plugins.airplanes.plugin"
+plugins.welcome = require "plugins.welcome.plugin"
 
 -- call current GameState's enter() on hot-reload
 lurker.postswap = function()
