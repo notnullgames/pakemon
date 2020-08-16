@@ -14,10 +14,9 @@ else
     sudo git clone --depth 1 https://github.com/notnullgames/pakemon.git /opt/pakemon
 fi
 
-cd /opt/pakemon
-
 sudo ln -s /opt/pakemon/start.sh /usr/local/bin/pakemon
 
+cd /opt/pakemon
 for plugin in src/plugins/*/setup.sh; do
     $plugin
 done
