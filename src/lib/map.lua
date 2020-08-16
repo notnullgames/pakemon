@@ -1,7 +1,15 @@
 local map = {}
 
+local style = 'dark-v10'
+-- local style = 'light-v10'
+-- local style = 'streets-v11'
+-- local style = 'outdoors-v11'
+-- local style = 'satellite-v9'
+-- local style = 'satellite-streets-v11'
+
+
 function map:getMapUrl(markers)
-  local url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/"
+  local url = "https://api.mapbox.com/styles/v1/mapbox/" .. style .. "/static/"
   for i,v in pairs(markers) do
     url = url .. "url-" .. encodeURI("https://dynamic-icons.vercel.app/api?alt="..v[3].."&rot="..v[4].."&hex="..v[5]) .. "(" .. v[1] .. "," .. v[2] .. ")"
     if i ~= #markers then

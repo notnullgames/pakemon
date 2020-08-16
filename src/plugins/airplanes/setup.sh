@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo "Installing deps for the radio plugin"
-sudo apt install dump1090-mutability
+sudo apt-get install -y --no-install-recommends dump1090-mutability
