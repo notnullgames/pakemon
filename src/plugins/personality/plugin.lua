@@ -28,16 +28,16 @@ end
 
 -- this sets initial state of the class
 function PluginPersonality:init()
-  self.image = love.graphics.newImage("plugins/personality/gally.png")
+  self.image = love.graphics.newImage("plugins/personality/wolfy.png")
   self.image:setFilter('nearest', 'nearest')
   local g = anim8.newGrid(32, 32, self.image:getWidth(), self.image:getHeight())
   self.animations = {
-    happy = anim8.newAnimation(g('1-6', 1), 0.2),
-    excited = anim8.newAnimation(g('1-6', 2), 0.2),
-    curious = anim8.newAnimation(g('1-6', 3), 0.2),
-    lazy = anim8.newAnimation(g('1-6', 4), 0.2),
-    sleepy = anim8.newAnimation(g('1-6', 5), 0.2),
-    sad = anim8.newAnimation(g('1-6', 4), 0.2),
+    happy = anim8.newAnimation(g('1-6', 1), 0.5),
+    excited = anim8.newAnimation(g('1-6', 2), 0.5),
+    curious = anim8.newAnimation(g('1-6', 3), 0.5),
+    lazy = anim8.newAnimation(g('1-6', 4), 0.5),
+    sleepy = anim8.newAnimation(g('1-6', 5), 0.5),
+    sad = anim8.newAnimation(g('1-6', 6), 0.5),
   }
 end
 
