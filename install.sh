@@ -3,8 +3,7 @@
 # This is the top-level installer for pakemon
 
 echo "Installing dependencies"
-sudo apt-get install -y --no-install-recommends git libcurl4
-sudo ln -s /usr/lib/x86_64-linux-gnu/libcurl.so.4 /usr/lib/x86_64-linux-gnu/libcurl.so
+sudo apt-get install -y --no-install-recommends git libcurl4-gnutls-dev
 
 if [ -d "/opt/pakemon" ]; then
     cd /opt/pakemon
