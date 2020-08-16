@@ -17,13 +17,15 @@ local function updatePlanes()
 end
 
 local function handleExit()
-  io.popen('killall -9 dump1090')
+  io.popen('killall -9 dump1090-mutability')
+  io.popen('killall -9 dump1090-mutability')
   p:close()
 end
 
 function StateAirplanes:enter()
   -- needs this in path & permissions
-  p = assert(io.popen('dump1090 --net --quiet'))
+  p = assert(io.popen('dump1090-mutability --net --quiet'))
+  p = assert(io.popen('dump1090-mutability --net --quiet'))
 end
 
 function StateAirplanes:leave()
