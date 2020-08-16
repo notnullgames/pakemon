@@ -3,7 +3,7 @@
 # This is the top-level installer for pakemon
 
 echo "Installing dependencies"
-sudo apt-get install -y --no-install-recommends git libcurl4-gnutls-dev
+sudo apt-get install -y --no-install-recommends git libcurl4-gnutls-dev love
 
 if [ -d "/opt/pakemon" ]; then
     cd /opt/pakemon
@@ -15,6 +15,8 @@ else
 fi
 
 cd /opt/pakemon
+
+sudo ln -s /opt/pakemon/start.sh /usr/local/bin/pakemon
 
 for plugin in src/plugins/*/setup.sh; do
     $plugin
