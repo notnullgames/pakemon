@@ -29,10 +29,6 @@ function StateCity:update(dt)
   if down < 60 then
     down = down + (dt * speed * 2 )
   end
-
-  if down == 45 then
-    displayStart = 1
-    end
 end
 
 function StateCity:draw()
@@ -56,7 +52,7 @@ function StateCity:draw()
   love.graphics.draw(title, 100, down, 0, .05, .05 )
   love.graphics.pop()
   
-  if displayStart == 1 then 
+  if down >= 60 then 
     love.graphics.print("start", 150, 150) 
   end
 
