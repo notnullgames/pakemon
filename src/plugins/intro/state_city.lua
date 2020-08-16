@@ -20,6 +20,7 @@ local timeback = 0
 local timefore = 0
 local down = -34
 
+local soundplayed = false
 
 function StateCity:update(dt)
   timefar = timefar + (dt * speed)
@@ -27,7 +28,10 @@ function StateCity:update(dt)
   timefore = timefore + (dt * speed * 8)
   
   if down < 60 then
-    down = down + (dt * speed * 2 )
+    down = down + (dt * speed * 20 )
+  elseif not soundplayed then
+    SoundMove:play()
+    soundplayed = true
   end
 end
 
@@ -59,8 +63,9 @@ function StateCity:draw()
 end
 
 function StateCity:pressed(button)
-  if button == "b" then
+  if button == "start" then
     song:stop()
+    SoundOk:play()
     Gamestate.switch(StateMainMenu)
   end
 end
