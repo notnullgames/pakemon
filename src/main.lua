@@ -50,8 +50,8 @@ end
 function love.load()
   love.graphics.setFont(FontBasic)
   love.mouse.setVisible(false)
-  -- I register with no events, so I can manually call them in my own callbacks (in the order I want)
-  Gamestate.registerEvents({})
+  -- I register without draw or update, or inputs, so I can control those
+  Gamestate.registerEvents({ "init", "enter", "leave", "resume", "focus", "quit" })
   -- add credit preamble
   plugins.credits.credits = creditsApp
   
