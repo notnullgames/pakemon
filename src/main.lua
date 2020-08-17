@@ -30,15 +30,13 @@ local creditsApp = [[
   
 ]]
 
--- prototype for plugin system
--- TODO: eventually this will be auto-loaded from plugins/ and ~/.pakemon/*.zip
--- these ones should be pre-loaded in correct order, though
+-- autoload built-in plugins
 plugins = {}
-plugins.menu = require "plugins.menu.plugin"
-plugins.credits = require "plugins.credits.plugin"
-plugins.personality = require "plugins.personality.plugin"
-plugins.airplanes = require "plugins.airplanes.plugin"
-plugins.intro = require "plugins.intro.plugin"
+files = love.filesystem.getDirectoryItems("plugins")
+for _,p in pairs(files) do
+  print("plugins."..p..".plugin")
+  plugins[p] = require("plugins."..p..".plugin")
+end
 
 -- call current GameState's enter() on hot-reload
 lurker.postswap = function()
