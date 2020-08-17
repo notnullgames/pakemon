@@ -21,11 +21,8 @@ local function handleExit()
   p:close()
 end
 
-function StateAirplanes:load()
-  menuPlanes = MenuManager()
-end
-
 function StateAirplanes:enter()
+  menuPlanes = MenuManager()
   -- needs this in path & permissions
   p = assert(io.popen('dump1090-mutability --net --quiet'))
 end
@@ -41,11 +38,11 @@ end
 function StateAirplanes:update(dt)
   if (interval % 100 == 0) then
     updatePlanes()
-    local p = "s"
+    local planeText = "s"
     if #planes == 1 then
-      p=""
+      planeText=""
     end
-    menuPlanes:setTitle(#planes .. " plane" .. p .. " found.")
+    menuPlanes:setTitle(#planes .. " plane" .. planeText .. " found.")
     -- TODO: check that it's really differnt so it doesn't reset menu
     local menu = {}
     for i,v in pairs(planes) do
