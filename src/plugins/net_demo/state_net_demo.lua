@@ -55,11 +55,11 @@ function StateNetDemo:draw()
     love.graphics.rectangle( "fill", 0, 0, 320, 30 )
     love.graphics.setColor(1,1,1,1)
 
-    love.graphics.printf(networkName, FontBasic, 10, 5, 300, "center")
+    love.graphics.printf(networkName, FontHeader, 10, 5, 300, "center")
 end
 
 function StateNetDemo:update(dt)
-    camera:lookAt(160, 120 + ((selection -1) * 30))
+    camera:lookAt(160, 120 + ((selection -1) * 60))
 end
 
 function StateNetDemo:pressed(button)
