@@ -17,6 +17,7 @@ function map:getMapUrl(markers)
     end
   end
   url = url .. "/auto/320x240?access_token=pk.eyJ1IjoiZGF2aWRrb25zdW1lciIsImEiOiJja2R0OHl2OXQwcGh1MnNtcGRleDRpeWRpIn0.lGkSZTG8nmxltvK6uF8NHw&attribution=false&logo=false"
+  print("map URL: " .. url)
   return url
 end
 
