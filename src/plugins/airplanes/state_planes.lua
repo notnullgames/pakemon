@@ -5,7 +5,7 @@ local planes = {}
 local interval = 0
 local currentPlane = null
 
-local menuPlanes = MenuManager()
+local menuPlanes
 
 local function updatePlanes()
   local res = {}
@@ -19,6 +19,10 @@ end
 local function handleExit()
   io.popen('killall -9 dump1090-mutability')
   p:close()
+end
+
+function StateAirplanes:load()
+  menuPlanes = MenuManager()
 end
 
 function StateAirplanes:enter()
