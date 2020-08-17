@@ -5,11 +5,18 @@ local voice = love.audio.newSource("plugins/intro/notnullgames.ogg", "stream")
 
 logo:setFilter('nearest', 'nearest')
 
+local timerFinish
+
 -- do your setup here
 function StateWelcome:enter(dt)
   voice:play()
-  Timer.after(3, function() Gamestate.switch(StateCity) end )
+  timerFinish = Timer.after(3, function() Gamestate.switch(StateCity) end )
 end
+
+function StateWelcome:leave()
+  Timer.cancel(timerFinish)
+end
+
 
 -- do your updates here
 function StateWelcome:update(dt)
