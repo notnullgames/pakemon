@@ -102,17 +102,17 @@ cheap LCD, e-paper
 
 ### GameBoy form factor: 
 
-https://www.renegadelabs.net/product/gameboy-cm3-phoenix-diy-kit/
-https://www.renegadelabs.net/product/gameboy-zero-raspberry-pi-modded-gameboy/
-https://www.experimentalpi.com/PiBoy-DMG--Full-Kit_p_18.html
+* https://www.renegadelabs.net/product/gameboy-cm3-phoenix-diy-kit/
+* https://www.renegadelabs.net/product/gameboy-zero-raspberry-pi-modded-gameboy/
+* https://www.experimentalpi.com/PiBoy-DMG--Full-Kit_p_18.html
 
 ### GBA Form factor
-https://www.renegadelabs.net/product/gameboy-zero-ez-gba-diy-kit/
+* https://www.renegadelabs.net/product/gameboy-zero-ez-gba-diy-kit/
 
 ### Other:
-https://learn.adafruit.com/pigrrl-raspberry-pi-gameboy
-https://learn.adafruit.com/pigrrl-2
-https://learn.adafruit.com/pigrrl-zero
+* https://learn.adafruit.com/pigrrl-raspberry-pi-gameboy
+* https://learn.adafruit.com/pigrrl-2
+* https://learn.adafruit.com/pigrrl-zero
 
 * Ebay.com or your closet.
 
@@ -121,8 +121,6 @@ Things you can Imagine! Really, anything that fits all the
 goodies you want and feel comfortable using. 
 
 # Software approach 
-
-## A simplified UI Concept pipe dream:
 
 ### The Buddy System! 
 * Packets as Pocket Monsters; e.g. Collect enough packets and 
@@ -160,7 +158,8 @@ use those.
 
 * [metasploit](https://github.com/rapid7/metasploit-framework) 
 * [bettercap](https://github.com/bettercap/bettercap) wireless packet capture
-
+* [P4wmP1](https://github.com/RoganDawes/P4wnP1)
+ * usb injection took kit. pretty spiffy looking. 
 
 * [rpitx](https://github.com/F5OEO/rpitx) SDR built with only a RPi! 
 
@@ -206,11 +205,11 @@ use those.
 
 
 #### Full kits will need modifications
-[GPi  case]()
-[Piboy DMG (unreleased)](https://www.experimentalpi.com/PiBoy-DMG--Full-Kit_p_18.html)
+* [GPi  case]()
+* [Piboy DMG (unreleased)](https://www.experimentalpi.com/PiBoy-DMG--Full-Kit_p_18.html)
 * (GPIO fully used; maybe attach screen via HDMI)
-[GameBoy Zero EZ-GBA DIY kiy](https://www.renegadelabs.net/product/gameboy-zero-ez-gba-diy-kit/)
-[PiGRRL](https://learn.adafruit.com/pigrrl-zero)
+* [GameBoy Zero EZ-GBA DIY kiy](https://www.renegadelabs.net/product/gameboy-zero-ez-gba-diy-kit/)
+* [PiGRRL](https://learn.adafruit.com/pigrrl-zero)
 
 
 
