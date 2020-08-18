@@ -23,7 +23,7 @@ The Pakémon runs [love2d](https://love2d.org/) to manage a collection of activi
   * [anim8](https://github.com/kikito/anim8)
 
 
-* hump [docs] (https://hump.readthedocs.io/en/latest/)
+* hump [docs](https://hump.readthedocs.io/en/latest/)
   * [camera](https://hump.readthedocs.io/en/latest/camera.html)
   * [class](https://hump.readthedocs.io/en/latest/class.html)
   * [gamestate](https://hump.readthedocs.io/en/latest/gamestate.html)
