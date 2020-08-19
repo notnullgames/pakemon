@@ -34,7 +34,7 @@ function StateNetDemo:draw()
 
 
 function StateNetDemo:update(dt)
-  --  camera:lookAt(160, 120 + ((selection -1) * 60))
+   camera:lookAt(160, 120 + ((selection -1) * 40))
 end
 
 function StateNetDemo:pressed(button)
