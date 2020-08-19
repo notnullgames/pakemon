@@ -9,7 +9,7 @@ local menuPlanes
 
 -- TODO: make this more async
 local function updatePlanes()
-  planes = httpGetJson("http://localhost:8080/dump1090/data.json")
+  planes = httpGetJson("http://localhost:8080/data.json")
 end
 
 local function handleExit()
