@@ -27,7 +27,7 @@ end
 
 local updateTime = 0
 function StateAirplanes:update(dt)
-  if (updateTime == 0 or updateTime > 3) then
+  if updateTime == 0 or updateTime > 1 then
     updateTime = 0.1
     local j = httpGetJson("http://localhost:8080/data.json")
     if j then
