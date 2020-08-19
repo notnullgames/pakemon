@@ -32,7 +32,9 @@ plugins = {}
 files = love.filesystem.getDirectoryItems("plugins")
 for _,p in pairs(files) do
   print("plugins."..p..".plugin")
-  plugins[p] = require("plugins."..p..".plugin")
+  if string.sub(p, 1, 1) ~= '.' then
+    plugins[p] = require("plugins."..p..".plugin")
+  end
 end
 
 -- call current GameState's enter() on hot-reload
