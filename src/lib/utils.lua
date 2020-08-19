@@ -1,5 +1,7 @@
 -- these are shared utils everyone might nbeed
 
+json = require "lib.json"
+
 -- get graphic dimensions of some text
 function getTextSize(text, width, font)
   if font == nil then
@@ -73,4 +75,46 @@ end
 function encodeURI(str)
   local output, t = string.gsub(str,"[^%w]", encodeChar)
   return output
+end
+
+-- dump objects
+function dump(o)
+  if type(o) == 'table' then
+     local s = '{ '
+     for k,v in pairs(o) do
+        if type(k) ~= 'number' then k = '"'..k..'"' end
+        s = s .. '['..k..'] = ' .. dump(v) .. ','
+     end
+     return s .. '} '
+  else
+     return tostring(o)
+  end
+end
+
+
+-- simple HTTP get text
+function httpGetText(url, params)
+  if params then
+    local c = 1
+    for i,v in pairs(params) do
+      print(i,v)
+      if c == 1 then
+        url = url .. '?'
+      else
+        url = url .. '&'
+      end
+      url = url .. encodeURI(i) .. '=' .. encodeURI(v)
+      c = c + 1
+    end
+  end
+  local cmd = 'wget -qO- "' .. url .. '"'
+  local f = assert(io.popen(cmd, 'r'))
+  local s = assert(f:read('*a'))
+  f:close()
+  return s
+end
+
+-- simple HTTP GET of JSON
+function httpGetJson(url, params)
+  return json.decode(httpGetText(url, params))
 end
