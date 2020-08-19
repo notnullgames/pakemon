@@ -7,24 +7,20 @@ local currentPlane = null
 
 local menuPlanes
 
+-- TODO: make this more async
 local function updatePlanes()
-  local res = {}
-  local r = request.send(url)
-  if r then
-    planes = json.decode(r.body)
-    print(r.body)
-  end
+  planes = httpGetJson("http://localhost:8080/dump1090/data.json")
 end
 
 local function handleExit()
-  io.popen('killall -9 dump1090-mutability')
+  io.popen('killall -9 dump1090')
   p:close()
 end
 
 function StateAirplanes:enter()
   menuPlanes = MenuManager()
   -- needs this in path & permissions
-  p = assert(io.popen('dump1090-mutability --net --quiet'))
+  p = assert(io.popen('dump1090 --net --quiet'))
 end
 
 function StateAirplanes:leave()

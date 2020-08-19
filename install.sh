@@ -4,7 +4,7 @@
 
 echo "Installing dependencies"
 sudo apt-get update
-sudo apt-get install -y --no-install-recommends git libcurl4-gnutls-dev love
+sudo apt-get install -y --no-install-recommends git love
 
 if [ -d "/opt/pakemon" ]; then
     cd /opt/pakemon

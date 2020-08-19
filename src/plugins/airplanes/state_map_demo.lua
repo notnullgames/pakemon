@@ -3,7 +3,7 @@ local StateMapDemo = {}
 local image
 
 function StateMapDemo:enter()
-  image = map:getMapImage({
+  image = httpGetMap({
     -- lat, long, alt, dir, hex
     { -122.6555, 45.60, 3000, 75, 'b4321' },
     { -122.680, 45, 4000, 175, 'b4321' },

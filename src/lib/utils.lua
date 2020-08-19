@@ -58,15 +58,6 @@ function roundrect(mode, x, y, width, height, xround, yround)
     love.graphics.polygon(mode, unpack(points))
 end
 
--- download an image from the web
-function downloadImage(url)
-  local r = request.send(url)
-  local filedata = love.filesystem.newFileData(r.body, 'map.png')
-  local imagedata = love.image.newImageData(filedata)
-  local image = love.graphics.newImage(imagedata)
-  return image
-end
-
 local function encodeChar(chr)
   return string.format("%%%X",string.byte(chr))
 end
@@ -93,20 +84,7 @@ end
 
 
 -- simple HTTP get text
-function httpGetText(url, params)
-  if params then
-    local c = 1
-    for i,v in pairs(params) do
-      print(i,v)
-      if c == 1 then
-        url = url .. '?'
-      else
-        url = url .. '&'
-      end
-      url = url .. encodeURI(i) .. '=' .. encodeURI(v)
-      c = c + 1
-    end
-  end
+function httpGetText(url)
   local cmd = 'wget -qO- "' .. url .. '"'
   local f = assert(io.popen(cmd, 'r'))
   local s = assert(f:read('*a'))
@@ -115,6 +93,38 @@ function httpGetText(url, params)
 end
 
 -- simple HTTP GET of JSON
-function httpGetJson(url, params)
-  return json.decode(httpGetText(url, params))
+function httpGetJson(url)
+  return json.decode(httpGetText(url))
+end
+
+-- download an image from HTTP GET
+function httpGetImage(url, filename)
+  local cmd = 'wget -qO /tmp/pakemon-binary "' .. url .. '"'
+  local f = assert(io.popen(cmd, 'r'))
+  f:close()
+  f = io.open("/tmp/pakemon-binary", "rb")
+  local filedata = love.filesystem.newFileData(f:read("*a"), filename)
+  f:close()
+  local imagedata = love.image.newImageData(filedata)
+  local image = love.graphics.newImage(imagedata)
+  return image
+end
+
+-- download a map image, with markers
+-- other styles:
+-- 'light-v10'
+-- 'streets-v11'
+-- 'outdoors-v11'
+-- 'satellite-v9'
+-- 'satellite-streets-v11'
+function httpGetMap(markers, style)
+  local url = "https://api.mapbox.com/styles/v1/mapbox/" .. (style or "dark-v10") .. "/static/"
+  for i,v in pairs(markers) do
+    url = url .. "url-" .. encodeURI("https://dynamic-icons.vercel.app/api?alt="..v[3].."&rot="..v[4].."&hex="..v[5]) .. "(" .. v[1] .. "," .. v[2] .. ")"
+    if i ~= #markers then
+      url = url .. ","
+    end
+  end
+  url = url .. "/auto/320x240?access_token=pk.eyJ1IjoiZGF2aWRrb25zdW1lciIsImEiOiJja2R0OHl2OXQwcGh1MnNtcGRleDRpeWRpIn0.lGkSZTG8nmxltvK6uF8NHw&attribution=false&logo=false"
+  return httpGetImage(url, "map.png")
 end
