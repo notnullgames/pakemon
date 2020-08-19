@@ -2,15 +2,9 @@ local StateAirplanes = {}
 
 local p
 local planes = {}
-local interval = 0
 local currentPlane = null
 
 local menuPlanes
-
--- TODO: make this more async
-local function updatePlanes()
-  planes = httpGetJson("http://localhost:8080/data.json")
-end
 
 local function handleExit()
   io.popen('killall -9 dump1090')
@@ -31,22 +25,27 @@ function StateAirplanes:quit()
   handleExit()
 end
 
+local updateTime = 0
 function StateAirplanes:update(dt)
-  if (interval % 100 == 0) then
-    updatePlanes()
+  if (updateTime == 0 or updateTime > 3) then
+    updateTime = 0.1
+    local j = httpGetJson("http://localhost:8080/data.json")
+    if j then
+      planes = j
+    end
     local planeText = "s"
     if #planes == 1 then
       planeText=""
     end
     menuPlanes:setTitle(#planes .. " plane" .. planeText .. " found.")
-    -- TODO: check that it's really differnt so it doesn't reset menu
+    -- TODO: check that it's really different so it doesn't reset menu
     local menu = {}
     for i,v in pairs(planes) do
       table.insert(menu, {v.hex, function() currentPlane = v end })
     end
     menuPlanes:setMenus({ menu })
   end
-  interval = interval + 1
+  updateTime = updateTime + dt
   menuPlanes:update(dt)
 end
 
