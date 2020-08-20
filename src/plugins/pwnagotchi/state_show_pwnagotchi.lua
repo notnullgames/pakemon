@@ -12,7 +12,6 @@ function StateShowPwnagotchi:enter()
         print('requesting image')
         image = httpGetImage(url .. 'ui', 'pwnagotchi.png', 'changeme', 'changeme')
     end)
-    image =  httpGetImage(url .. 'ui', 'pwnagotchi.png', 'changeme', 'changeme')
 end
 
 function StateShowPwnagotchi:leave()
