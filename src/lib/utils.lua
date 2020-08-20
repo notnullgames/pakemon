@@ -89,12 +89,16 @@ function httpGetText(url)
   local f = assert(io.popen(cmd, 'r'))
   local s = assert(f:read('*a'))
   f:close()
+  if s == '' then
+    return nil
+  end
   return s
 end
 
 -- simple HTTP GET of JSON
 function httpGetJson(url)
-  return json.decode(httpGetText(url))
+  local r = httpGetText(url)
+  return r and json.decode(r)
 end
 
 -- download an image from HTTP GET
