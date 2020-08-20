@@ -11,9 +11,9 @@ Timer = require "lib.hump.timer"
 require "lib.utils"
 
 -- some basic fonts for everyone to use
+FontDefault = love.graphics.newFont()
 FontBasic = love.graphics.newFont("assets/monoid.ttf", 10)
 FontHeader = love.graphics.newFont("assets/heavydata.ttf", 15)
-
 
 -- staret of credits
 local creditsApp = [[
