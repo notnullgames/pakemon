@@ -1,9 +1,9 @@
-StateNetExplorer = require "plugins.net_explorer.state_net_explorer"
+StateNetExplorerDemo = require "plugins.net_explorer.state_net_explorer_demo"
 
-local PluginNetExplorer = {}
+local net_explorer = { }
 
-function PluginNetExplorer:load()
-    plugins.menu.main:addItem("Net Explorer", function() Gamestate.switch(StateNetExplorer) end, 2)
+function net_explorer:load()
+    plugins.menu.main:addItem("Net Diver", function() Gamestate.switch(StateNetExplorerDemo) end)
 end
 
-return PluginNetExplorer
+return net_explorer

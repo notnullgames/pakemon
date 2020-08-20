@@ -10,6 +10,8 @@ require "lib.inputmap"
 Timer = require "lib.hump.timer"
 require "lib.utils"
 
+love.graphics.setDefaultFilter("nearest", "nearest")
+
 -- some basic fonts for everyone to use
 FontDefault = love.graphics.newFont()
 FontBasic = love.graphics.newFont("assets/monoid.ttf", 10)
@@ -46,7 +48,6 @@ lurker.postswap = function()
 end
 
 function love.load()
-  love.graphics.setDefaultFilter("nearest", "nearest")
   love.graphics.setFont(FontBasic)
   love.mouse.setVisible(false)
   -- I register without draw or update, or inputs, so I can control those

@@ -30,7 +30,7 @@ end
 function StateAirplanes:enter()
   menuPlanes = MenuManager()
   -- needs this in path & permissions
-  p = assert(io.popen('dump1090 --net --quiet'))
+  p = assert(io.popen('dump1090 --net'))
   timerhandle = Timer.every(2, updatePlanes)
   updatePlanes()
 end
