@@ -1,4 +1,4 @@
-local StateNetExplorerDemo = {}
+local StateNetExplorer = {}
 
 local SoundMove = love.audio.newSource("plugins/net_explorer/sounds/move.wav", "static")
 local SoundAction = love.audio.newSource("plugins/net_explorer/sounds/action.wav", "static")
@@ -92,20 +92,20 @@ local function handleAction(actionName, host)
     print("action:", actionName, dump(host))
 end
 
-function StateNetExplorerDemo:enter()
+function StateNetExplorer:enter()
     timerhandle = Timer.every(2, updateHosts)
     updateHosts()
 end
 
-function StateNetExplorerDemo:leave()
+function StateNetExplorer:leave()
     Timer.cancel(timerhandle)
 end
 
-function StateNetExplorerDemo:update(dt)
+function StateNetExplorer:update(dt)
 end
 
 
-function StateNetExplorerDemo:pressed(button)
+function StateNetExplorer:pressed(button)
     if menuMode == "person" then
         if button == "b" then
             Gamestate.switch(StateMainMenu)
@@ -155,7 +155,7 @@ function StateNetExplorerDemo:pressed(button)
     end
 end
 
-function StateNetExplorerDemo:draw()
+function StateNetExplorer:draw()
     drawBox(0, 0, 240, 240)
     drawBox(240, 0, 80, 240)
 
@@ -181,4 +181,4 @@ function StateNetExplorerDemo:draw()
     end
 end
 
-return StateNetExplorerDemo
+return StateNetExplorer
