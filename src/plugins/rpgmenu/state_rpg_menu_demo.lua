@@ -1,21 +1,15 @@
 local StateRpgMenuDemo = {}
 
-local SoundMove = love.audio.newSource("plugins/rpgmenu/move.wav", "static")
-local SoundAction = love.audio.newSource("plugins/rpgmenu/action.wav", "static")
-local SoundSelect = love.audio.newSource("plugins/rpgmenu/select.wav", "static")
+local SoundMove = love.audio.newSource("plugins/rpgmenu/sounds/move.wav", "static")
+local SoundAction = love.audio.newSource("plugins/rpgmenu/sounds/action.wav", "static")
+local SoundSelect = love.audio.newSource("plugins/rpgmenu/sounds/select.wav", "static")
 
-local faces = {
-    love.graphics.newImage('plugins/rpgmenu/person1.png'),
-    love.graphics.newImage('plugins/rpgmenu/person2.png'),
-    love.graphics.newImage('plugins/rpgmenu/person3.png'),
-    love.graphics.newImage('plugins/rpgmenu/person4.png'),
-    love.graphics.newImage('plugins/rpgmenu/person5.png'),
-    love.graphics.newImage('plugins/rpgmenu/person6.png'),
-    love.graphics.newImage('plugins/rpgmenu/person7.png'),
-    love.graphics.newImage('plugins/rpgmenu/person8.png'),
-}
+local faces = {}
+for i=1,16 do
+    table.insert(faces, love.graphics.newImage("plugins/rpgmenu/images/person".. i ..".png"))
+end
 
-local pointer =  love.graphics.newImage('plugins/rpgmenu/pointer.png')
+local pointer =  love.graphics.newImage('plugins/rpgmenu/images/pointer.png')
 
 local actions = {
     "Item",
