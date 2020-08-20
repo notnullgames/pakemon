@@ -35,7 +35,7 @@ function StateNetExplorer:update(dt)
         end
     end
     updateTime = updateTime + dt
-    camera:lookAt(160, 120 + ((selection -1) * 40))
+    camera:lookAt(160, (selection == 1 and 120 or 60) + ((selection -1) * 60))
 end
  
 function StateNetExplorer:draw()
@@ -45,13 +45,13 @@ function StateNetExplorer:draw()
         love.graphics.setColor(1,1,1,1)
         love.graphics.setFont(FontBasic)
         for i,host in pairs(network.hosts) do
-            local y = 40 + (i-1) * 60     
+            local y = 40 + ((i-1) * 60)
             -- draw text
             love.graphics.print("IP: " ..  host.ipv4 .. "\n" .. 
                                 "MAC: " .. host.mac .. "\n" .. 
                                 "Name: " .. shortenText(host.hostname,23), 10, y-10 ) 
             if i == selection then
-                love.graphics.rectangle( "line", 10, y-10, 200, 45 )
+                love.graphics.rectangle( "line", 5, y-10, 200, 45 )
             end
         end
         camera:detach()
