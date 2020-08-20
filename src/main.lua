@@ -46,6 +46,7 @@ lurker.postswap = function()
 end
 
 function love.load()
+  love.graphics.setDefaultFilter("nearest", "nearest")
   love.graphics.setFont(FontBasic)
   love.mouse.setVisible(false)
   -- I register without draw or update, or inputs, so I can control those

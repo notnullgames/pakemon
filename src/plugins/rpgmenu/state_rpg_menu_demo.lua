@@ -1,5 +1,9 @@
 local StateRpgMenuDemo = {}
 
+local SoundMove = love.audio.newSource("plugins/rpgmenu/move.wav", "static")
+local SoundAction = love.audio.newSource("plugins/rpgmenu/action.wav", "static")
+local SoundSelect = love.audio.newSource("plugins/rpgmenu/select.wav", "static")
+
 local faces = {
     love.graphics.newImage('plugins/rpgmenu/person1.png'),
     love.graphics.newImage('plugins/rpgmenu/person2.png'),
@@ -24,66 +28,28 @@ local actions = {
     "Save"
 }
 
-local hosts = {
-    {
-        hostname = "ABABABABABABABABABABABABABABABA",
-        ipv4 = "192.168.0.4",
-        mac = "98:48:27:3f:be:d6"
-    },
-    {
-        hostname = "BBOOOKOKKOKOKOKOOKOKO",
-        ipv4 = "192.168.0.5",
-        mac = "98:48:27:3f:be:d6"
-    },
-    {
-        hostname = "OYTIYTITUTUYTUTUTUTUTUYTUTUTUTUT",
-        ipv4 = "192.168.0.6",
-        mac = "98:48:27:3f:be:d6"
-    },
-    {
-        hostname = "mnbvxishdfkjhsdkfhksdhfkshdkfhskdf",
-        ipv4 = "192.168.0.7",
-        mac = "98:48:27:3f:be:d6"
-    },
-    {
-        hostname = "hsdkahsdkjahksdhakdhakshdkahsdkahsdk",
-        ipv4 = "192.168.0.8",
-        mac = "98:48:27:3f:be:d6"
-    },
-    {
-        hostname = "ghjghjghjghjghjghjghjghj",
-        ipv4 = "192.168.0.9",
-        mac = "98:48:27:3f:be:d6"
-    },
-    {
-        hostname = "weqweqweqweqweqweqweqweqweqweqweqwewe",
-        ipv4 = "192.168.0.10",
-        mac = "98:48:27:3f:be:d6"
-    }
-}
-
 -- things that track current state
+local hosts = {}
 local menuMode = "person"
 local currentPerson = 1
 local currentAction = 1
+local timerhandle
 
 -- draw 1 person
 local function drawOnePerson(y, face, hostname, ip, mac)
     love.graphics.setFont(FontBasic)
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.draw(face, 20, 25 + (y-1) * 60, 0, 0.5, 0.5)
-    love.graphics.print(shortenText(hostname, 22), 80, 24 + (y-1) * 60)
-    love.graphics.print(shortenText(ip, 22), 80, 42 + (y-1) * 60)
-    love.graphics.print(shortenText(mac, 22), 80, 60 + (y-1) * 60)
+    love.graphics.draw(face, 20, 10 + (y-1) * 58, 0, 0.5, 0.5)
+    love.graphics.print(shortenText(hostname, 22), 80, 10 + (y-1) * 58)
+    love.graphics.print(shortenText(ip, 22), 80, 28 + (y-1) * 58)
+    love.graphics.print(shortenText(mac, 22), 80, 44 + (y-1) * 58)
 end
 
 -- draw a blue box with white outline
 local function drawBox(x, y, width, height)
     love.graphics.setLineWidth(2)
-
     love.graphics.setColor(0.039, 0, 0.39, 1)
     love.graphics.rectangle("fill", x, y, width, height)
-
     love.graphics.setColor(0.8, 0.8, 0.8, 1)
     love.graphics.rectangle("line", x, y, width, height)
 end
@@ -100,48 +66,84 @@ end
 -- draw pointer for current person or action
 local function drawPointer()
     if menuMode == "person" then
-        love.graphics.draw(pointer, 5, 45 + (60 * (currentPerson-1)))
+        love.graphics.draw(pointer, 5, 30 + (58 * ((currentPerson-1) % 4)))
     else
         love.graphics.draw(pointer, 240, 28 + (20 * (currentAction-1)))
     end
 end
 
-local function handleAction(actionName, person)
-    print("action:", actionName, dump(person))
+-- play the menu-move sound
+local function menuMoveSound()
+    SoundMove:stop()
+    SoundMove:play()
 end
 
-function StateRpgMenuDemo:load()
+-- mac address to a sortable decimal
+local function macToDec(mac)
+    return tonumber('0x' .. string.gsub(mac, ":", ""))
+end
+
+-- get list of hosts on network
+local function updateHosts()
+    local net = httpGetJson("http://127.0.0.1:8081/api/session/lan")
+    if net and net.hosts then
+        hosts = net.hosts
+        -- sort by mac-address, for a semi-reliable order
+        table.sort(hosts, function(a, b) return macToDec(a.mac) > macToDec(b.mac) end)
+    end
+end
+
+-- put your handler here. You have access to the host and the action
+local function handleAction(actionName, host)
+    print("action:", actionName, dump(host))
+end
+
+function StateRpgMenuDemo:enter()
+    timerhandle = Timer.every(2, updateHosts)
+    updateHosts()
+end
+
+function StateRpgMenuDemo:leave()
+    Timer.cancel(timerhandle)
 end
 
 function StateRpgMenuDemo:update(dt)
 end
+
 
 function StateRpgMenuDemo:pressed(button)
     if menuMode == "person" then
         if button == "b" then
             Gamestate.switch(StateMainMenu)
         end
-        if button == "a" then
+        if button == "a" and #hosts > 0 then
             menuMode = "action"
+            SoundSelect:play()
         end
-        if button == "up" then
+        if button == "up" and #hosts > 0 then
             currentPerson = currentPerson - 1
+            menuMoveSound()
         end
-        if button == "down" then
+        if button == "down" and #hosts > 0 then
             currentPerson = currentPerson + 1
+            menuMoveSound()
         end
     else
         if button == "b" then
+            SoundSelect:play()
             menuMode = "person"
         end
         if button == "a" then
+            SoundAction:play()
             handleAction(actions[currentAction], hosts[currentPerson])
         end
         if button == "up" then
             currentAction = currentAction - 1
+            menuMoveSound()
         end
         if button == "down" then
             currentAction = currentAction + 1
+            menuMoveSound()
         end
     end
     
@@ -162,12 +164,27 @@ end
 function StateRpgMenuDemo:draw()
     drawBox(0, 0, 240, 240)
     drawBox(240, 0, 80, 240)
-    -- TODO: need to sort by mac to keep better order
-    for i, host in pairs(hosts) do
-        drawOnePerson(i, faces[(i % #faces) + 1], host.hostname, host.ipv4, host.mac)
-    end
+
+    local p = math.floor((currentPerson-1) / 4)
+    local o = p * 4
+
+    for i = 1,4 do
+        local t = i + o
+        local host = hosts[t]
+        if host then
+            drawOnePerson(i, faces[(t % #faces) + 1], host.hostname, host.ipv4, host.mac )
+        end
+    end    
+    
     drawActions()
-    drawPointer()
+
+    if #hosts > 0 then
+        drawPointer()
+    else
+        love.graphics.setFont(FontBasic)
+        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.print("Looking for hosts...", 20, 20)
+    end
 end
 
 return StateRpgMenuDemo

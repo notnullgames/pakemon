@@ -6,18 +6,37 @@ local currentPlane = null
 
 local menuPlanes
 
+local timerhandle
+
 local function handleExit()
   io.popen('killall -9 dump1090')
   p:close()
+end
+
+-- get list of current planes around you 
+local function updatePlanes()
+  local j = httpGetJson("http://localhost:8080/data.json")
+  if j then
+    planes = j
+    menuPlanes:setTitle(#planes .. " plane" .. (#planes == 1 and "" or "s") .. " found.")
+    local menu = {}
+    for i,v in pairs(planes) do
+      table.insert(menu, {v.hex, function() currentPlane = v end })
+    end
+    menuPlanes:setMenus({ menu })
+  end
 end
 
 function StateAirplanes:enter()
   menuPlanes = MenuManager()
   -- needs this in path & permissions
   p = assert(io.popen('dump1090 --net --quiet'))
+  timerhandle = Timer.every(2, updatePlanes)
+  updatePlanes()
 end
 
 function StateAirplanes:leave()
+  Timer.cancel(timerhandle)
   handleExit()
 end
 
@@ -25,27 +44,7 @@ function StateAirplanes:quit()
   handleExit()
 end
 
-local updateTime = 0
 function StateAirplanes:update(dt)
-  if updateTime == 0 or updateTime > 1 then
-    updateTime = 0.1
-    local j = httpGetJson("http://localhost:8080/data.json")
-    if j then
-      planes = j
-    end
-    local planeText = "s"
-    if #planes == 1 then
-      planeText=""
-    end
-    menuPlanes:setTitle(#planes .. " plane" .. planeText .. " found.")
-    -- TODO: check that it's really different so it doesn't reset menu
-    local menu = {}
-    for i,v in pairs(planes) do
-      table.insert(menu, {v.hex, function() currentPlane = v end })
-    end
-    menuPlanes:setMenus({ menu })
-  end
-  updateTime = updateTime + dt
   menuPlanes:update(dt)
 end
 

@@ -29,7 +29,6 @@ end
 -- this sets initial state of the class
 function PluginPersonality:init()
   self.image = love.graphics.newImage("plugins/personality/wolfy.png")
-  self.image:setFilter('nearest', 'nearest')
   local g = anim8.newGrid(32, 32, self.image:getWidth(), self.image:getHeight())
   self.animations = {
     happy = anim8.newAnimation(g('1-6', 1), 0.5),
