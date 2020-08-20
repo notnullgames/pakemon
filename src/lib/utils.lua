@@ -98,8 +98,14 @@ function httpGetJson(url)
 end
 
 -- download an image from HTTP GET
-function httpGetImage(url, filename)
+function httpGetImage(url, filename, username, password)
   local cmd = 'wget -qO /tmp/pakemon-binary "' .. url .. '"'
+  if username then
+    cmd = cmd .. ' --user="' .. username ..'"'
+  end
+  if password then
+    cmd = cmd .. ' --password="' .. password ..'"'
+  end
   local f = assert(io.popen(cmd, 'r'))
   f:close()
   f = io.open("/tmp/pakemon-binary", "rb")
