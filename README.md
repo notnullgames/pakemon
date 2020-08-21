@@ -11,6 +11,14 @@ You will need to be on a debian-based system (raspbian, debian, ubuntu, pop, etc
 wget https://raw.githubusercontent.com/notnullgames/pakemon/master/install.sh -O - | bash
 ```
 
+## local dev
+
+For local development, you will need bettercap runnign for a few things. You can start a quick one in docker:
+
+```
+docker run --rm -it --privileged --net=host bettercap/bettercap -eval "api.rest on"
+```
+
 
 ## software
 
