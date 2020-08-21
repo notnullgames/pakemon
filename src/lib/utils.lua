@@ -95,9 +95,30 @@ function httpGetText(url)
   return s
 end
 
+-- simple HTTP post text
+function httpPostText(url, body)
+  local f = io.open("/tmp/pakemon-post", "w")
+  f:write(body)
+  f:close()
+  local cmd = 'wget --post-file=/tmp/pakemon-post -qO- "' .. url .. '"'
+  f = assert(io.popen(cmd, 'r'))
+  local s = assert(f:read('*a'))
+  f:close()
+  if s == '' then
+    return nil
+  end
+  return s
+end
+
 -- simple HTTP GET of JSON
 function httpGetJson(url)
   local r = httpGetText(url)
+  return r and json.decode(r)
+end
+
+-- simple HTTP POST of JSON
+function httpPostJson(url, body)
+  local r = httpPostText(url, body)
   return r and json.decode(r)
 end
 
@@ -137,4 +158,9 @@ function httpGetMap(markers, style)
   end
   url = url .. "/auto/320x240?access_token=pk.eyJ1IjoiZGF2aWRrb25zdW1lciIsImEiOiJja2R0OHl2OXQwcGh1MnNtcGRleDRpeWRpIn0.lGkSZTG8nmxltvK6uF8NHw&attribution=false&logo=false"
   return httpGetImage(url, "map.png")
+end
+
+-- send command to bettercap
+function bettercap(command)
+  return httpPostJson("http://127.0.0.1:8081/api/session", json.encode({ cmd = command }))
 end
