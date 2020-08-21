@@ -1,21 +1,51 @@
-version: '2.0'
+version: "3.5"
 
 services:
     pakemon:
         build: .
         ports:
             - "8081:8081"
-    target1:
+        networks:
+            - pakemon
+    
+    # these are targets:
+    
+    nowasp:
         image: citizenstig/nowasp
-    target2:
+        hostname: nowasp
+        networks:
+            - pakemon
+    webgoat:
         image: webgoat/webgoat-7.1
-    target3:
+        hostname: webgoat
+        networks:
+            - pakemon
+    dvwa:
         image: citizenstig/dvwa
-    target4:
+        hostname: dvwa
+        networks:
+            - pakemon
+    securityshepherd:
         image: ismisepaul/securityshepherd
-    target5:
+        hostname: securityshepherd
+        networks:
+            - pakemon
+    vaas-cve-2014-0160:
         image: hmlio/vaas-cve-2014-0160
-    target6:
+        hostname: vaas-cve-2014-0160
+        networks:
+            - pakemon
+    cve-2017-7494:
         image: vulnerables/cve-2017-7494
-    target7:
+        hostname: cve-2017-7494
+        networks:
+            - pakemon
+    vaas-cve-2014-6271:
         image: hmlio/vaas-cve-2014-6271
+        hostname: vaas-cve-2014-6271
+        networks:
+            - pakemon
+
+networks:
+    pakemon:
+        name: pakemon
