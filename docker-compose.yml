@@ -1,0 +1,21 @@
+version: '2.0'
+
+services:
+    pakemon:
+        build: .
+        ports:
+            - "8081:8081"
+    target1:
+        image: citizenstig/nowasp
+    target2:
+        image: webgoat/webgoat-7.1
+    target3:
+        image: citizenstig/dvwa
+    target4:
+        image: ismisepaul/securityshepherd
+    target5:
+        image: hmlio/vaas-cve-2014-0160
+    target6:
+        image: vulnerables/cve-2017-7494
+    target7:
+        image: hmlio/vaas-cve-2014-6271

@@ -13,10 +13,10 @@ wget https://raw.githubusercontent.com/notnullgames/pakemon/master/install.sh -O
 
 ## local dev
 
-For local development, you will need bettercap runnign for a few things. You can start a quick one in docker:
+Since you need bettercap running, and a few targets to mess with, there is a docker-compose included.
 
 ```
-docker run --rm -it --privileged --net=host bettercap/bettercap -eval "api.rest on"
+docker-compose up -d
 ```
 
 
