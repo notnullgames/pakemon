@@ -6,6 +6,11 @@ local SoundSelect = love.audio.newSource("plugins/net_explorer/sounds/select.wav
 
 local pointer =  love.graphics.newImage('plugins/net_explorer/images/pointer.png')
 
+local faces = {}
+for i=1,16 do
+    table.insert(faces, love.graphics.newImage("plugins/net_explorer/images/person".. i ..".png"))
+end
+
 local RpgLook = {}
 
 -- draw pointer for current person or action
@@ -29,6 +34,11 @@ end
 function RpgLook:soundSelect()
     SoundSelect:stop()
     SoundSelect:play()
+end
+
+-- draw a face, based on index
+function RpgLook:drawFace(index, x, y, sx, sy)
+    love.graphics.draw(faces[(index % #faces) + 1], x, y, 0, sx, sy)
 end
 
 -- draw a blue box with white outline

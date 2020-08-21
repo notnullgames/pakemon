@@ -1,10 +1,5 @@
 local StateNetExplorer = {}
 
-local faces = {}
-for i=1,16 do
-    table.insert(faces, love.graphics.newImage("plugins/net_explorer/images/person".. i ..".png"))
-end
-
 local actions = {
     "Item",
     "Magic",
@@ -24,10 +19,10 @@ local currentAction = 1
 local timerhandle
 
 -- draw 1 person
-local function drawOnePerson(y, face, hostname, ip, mac)
+local function drawOnePerson(y, index, hostname, ip, mac)
+    RpgLook:drawFace(index, 20, 10 + (y-1) * 58, 0.5, 0.5)
     love.graphics.setFont(FontBasic)
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.draw(face, 20, 10 + (y-1) * 58, 0, 0.5, 0.5)
     love.graphics.print(shortenText(hostname, 22), 80, 10 + (y-1) * 58)
     love.graphics.print(shortenText(ip, 22), 80, 28 + (y-1) * 58)
     love.graphics.print(shortenText(mac, 22), 80, 44 + (y-1) * 58)
@@ -133,7 +128,7 @@ function StateNetExplorer:draw()
             local t = i + o
             local host = hosts[t]
             if host then
-                drawOnePerson(i, faces[(t % #faces) + 1], host.hostname, host.ipv4, host.mac )
+                drawOnePerson(i, t, host.hostname, host.ipv4, host.mac )
             end
         end
         drawActions()
