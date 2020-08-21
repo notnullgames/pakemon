@@ -1,13 +1,14 @@
-StateMapDemo = require "plugins.airplanes.state_map_demo"
-StatePlanes = require "plugins.airplanes.state_planes"
+StatePlaneMap = require "plugins.airplanes.state_plane_map"
+StatePlaneList = require "plugins.airplanes.state_plane_list"
+StatePlaneManager = require "plugins.airplanes.state_plane_manager"
 
 local PluginPlane = {}
 
 -- this gets called when the plugin is loaded
 function PluginPlane:load()
-    plugins.menu.main:addItem("Track Planes", function() Gamestate.switch(StatePlanes) end, 2)
-    plugins.menu.main:addItem("Show Map", function() Gamestate.switch(StateMapDemo) end, 2)
+    plugins.menu.main:addItem("Track Planes", function() Gamestate.switch(StatePlaneManager) end)
     plugins.credits:add("Dynamic map images were provided by mapbox. Airplane image came from anim8's 1945 demo.")
+    plugins.credits:add("dump1090 provides plane radio information.")
 end
 
 return PluginPlane

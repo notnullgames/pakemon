@@ -1,4 +1,4 @@
-local StateAirplanes = {}
+local StatePlaneList = {}
 
 local p
 local planes = {}
@@ -27,7 +27,7 @@ local function updatePlanes()
   end
 end
 
-function StateAirplanes:enter()
+function StatePlaneList:enter()
   menuPlanes = MenuManager()
   -- needs this in path & permissions
   p = assert(io.popen('dump1090 --net'))
@@ -35,20 +35,20 @@ function StateAirplanes:enter()
   updatePlanes()
 end
 
-function StateAirplanes:leave()
+function StatePlaneList:leave()
   Timer.cancel(timerhandle)
   handleExit()
 end
 
-function StateAirplanes:quit()
+function StatePlaneList:quit()
   handleExit()
 end
 
-function StateAirplanes:update(dt)
+function StatePlaneList:update(dt)
   menuPlanes:update(dt)
 end
 
-function StateAirplanes:draw()
+function StatePlaneList:draw()
   if currentPlane then
     love.graphics.setColor(1,1,1,1)
     love.graphics.setFont(FontHeader)
@@ -67,7 +67,7 @@ function StateAirplanes:draw()
   end
 end
 
-function StateAirplanes:pressed(button)
+function StatePlaneList:pressed(button)
   if button == 'b' then
     if currentPlane then
       currentPlane = nil
@@ -82,4 +82,4 @@ function StateAirplanes:pressed(button)
   end
 end
 
-return StateAirplanes
+return StatePlaneList

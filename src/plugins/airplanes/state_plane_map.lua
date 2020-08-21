@@ -1,8 +1,8 @@
-local StateMapDemo = {}
+local StatePlaneMap = {}
 
 local image
 
-function StateMapDemo:enter()
+function StatePlaneMap:enter()
   image = httpGetMap({
     -- lat, long, alt, dir, hex
     { -122.6555, 45.60, 3000, 75, 'b4321' },
@@ -12,16 +12,16 @@ function StateMapDemo:enter()
   })
 end
 
-function StateMapDemo:draw()
+function StatePlaneMap:draw()
   if image then
     love.graphics.draw(image, 0, 0)
   end
 end
 
-function StateMapDemo:pressed(button)
+function StatePlaneMap:pressed(button)
   if button == "b" then
     Gamestate.switch(StateMainMenu)
   end
 end
 
-return StateMapDemo
+return StatePlaneMap
