@@ -1,14 +1,14 @@
 --- drawing utils for make a FF4ish RPG menu-type screen
 
-local SoundMove = love.audio.newSource("plugins/net_explorer/sounds/move.wav", "static")
-local SoundAction = love.audio.newSource("plugins/net_explorer/sounds/action.wav", "static")
-local SoundSelect = love.audio.newSource("plugins/net_explorer/sounds/select.wav", "static")
+local SoundMove = love.audio.newSource("assets/sounds/move.wav", "static")
+local SoundAction = love.audio.newSource("assets/sounds/action.wav", "static")
+local SoundSelect = love.audio.newSource("assets/sounds/select.wav", "static")
 
-local pointer =  love.graphics.newImage('plugins/net_explorer/images/pointer.png')
+local pointer =  love.graphics.newImage('assets/images/pointer.png')
 
 local faces = {}
 for i=1,16 do
-    table.insert(faces, love.graphics.newImage("plugins/net_explorer/images/person".. i ..".png"))
+    table.insert(faces, love.graphics.newImage("assets/images/person".. i ..".png"))
 end
 
 local RpgLook = {}

@@ -1,7 +1,7 @@
 local StateNetExplorer = {}
 
 local actions = {
-    "Item",
+    "Syn",
     "Magic",
     "Equip",
     "Status",
@@ -17,6 +17,26 @@ local menuMode = "person"
 local currentPerson = 1
 local currentAction = 1
 local timerhandle
+
+
+-- put your handler here. You have access to the host and the action
+local function handleAction(actionName, host)
+    local stateNext
+
+    if actionName == "Syn" then
+        stateNext = StateNetActionSyn   
+    end
+
+    if stateNext ~= nil then
+        -- tell the next state about host-choice, and change to it
+        stateNext.hostIndex = currentPerson
+        stateNext.host = host
+        Gamestate.switch(stateNext)
+    else
+        plugins.personality:notify("Action not implemented: " .. actionName)
+    end
+end
+
 
 -- draw 1 person
 local function drawOnePerson(y, index, hostname, ip, mac)
@@ -50,11 +70,6 @@ local function updateHosts()
         -- sort by mac-address, for a semi-reliable order
         table.sort(hosts, function(a, b) return macToDec(a.mac) > macToDec(b.mac) end)
     end
-end
-
--- put your handler here. You have access to the host and the action
-local function handleAction(actionName, host)
-    plugins.personality:notify(actionName .. ":\n" .. dump(host))
 end
 
 function StateNetExplorer:enter()
