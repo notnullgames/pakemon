@@ -75,10 +75,12 @@ end
 function StateNetExplorer:enter()
     timerhandle = Timer.every(2, updateHosts)
     updateHosts()
+    bettercap('net.probe on')
 end
 
 function StateNetExplorer:leave()
     Timer.cancel(timerhandle)
+    bettercap('net.probe off')
 end
 
 function StateNetExplorer:pressed(button)
