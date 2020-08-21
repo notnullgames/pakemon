@@ -9,6 +9,7 @@ lurker = require "lib.lurker.lurker"
 require "lib.inputmap"
 Timer = require "lib.hump.timer"
 require "lib.utils"
+RpgLook = require "lib.rpg_look"
 
 love.graphics.setDefaultFilter("nearest", "nearest")
 

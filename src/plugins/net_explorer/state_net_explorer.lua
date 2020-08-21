@@ -1,15 +1,9 @@
 local StateNetExplorer = {}
 
-local SoundMove = love.audio.newSource("plugins/net_explorer/sounds/move.wav", "static")
-local SoundAction = love.audio.newSource("plugins/net_explorer/sounds/action.wav", "static")
-local SoundSelect = love.audio.newSource("plugins/net_explorer/sounds/select.wav", "static")
-
 local faces = {}
 for i=1,16 do
     table.insert(faces, love.graphics.newImage("plugins/net_explorer/images/person".. i ..".png"))
 end
-
-local pointer =  love.graphics.newImage('plugins/net_explorer/images/pointer.png')
 
 local actions = {
     "Item",
@@ -39,15 +33,6 @@ local function drawOnePerson(y, face, hostname, ip, mac)
     love.graphics.print(shortenText(mac, 22), 80, 44 + (y-1) * 58)
 end
 
--- draw a blue box with white outline
-local function drawBox(x, y, width, height)
-    love.graphics.setLineWidth(2)
-    love.graphics.setColor(0.039, 0, 0.39, 1)
-    love.graphics.rectangle("fill", x, y, width, height)
-    love.graphics.setColor(0.8, 0.8, 0.8, 1)
-    love.graphics.rectangle("line", x, y, width, height)
-end
-
 -- draw the actions menu
 local function drawActions()
     love.graphics.setFont(FontDefault)
@@ -55,21 +40,6 @@ local function drawActions()
     for i, action in pairs(actions) do
         love.graphics.print(action, 260, 25 + (i-1) * 20)
     end
-end
-
--- draw pointer for current person or action
-local function drawPointer()
-    if menuMode == "person" then
-        love.graphics.draw(pointer, 5, 30 + (58 * ((currentPerson-1) % 4)))
-    else
-        love.graphics.draw(pointer, 240, 28 + (20 * (currentAction-1)))
-    end
-end
-
--- play the menu-move sound
-local function menuMoveSound()
-    SoundMove:stop()
-    SoundMove:play()
 end
 
 -- mac address to a sortable decimal
@@ -89,7 +59,7 @@ end
 
 -- put your handler here. You have access to the host and the action
 local function handleAction(actionName, host)
-    print("action:", actionName, dump(host))
+    plugins.personality:notify(actionName .. ":\n" .. dump(host))
 end
 
 function StateNetExplorer:enter()
@@ -101,10 +71,6 @@ function StateNetExplorer:leave()
     Timer.cancel(timerhandle)
 end
 
-function StateNetExplorer:update(dt)
-end
-
-
 function StateNetExplorer:pressed(button)
     if menuMode == "person" then
         if button == "b" then
@@ -112,32 +78,32 @@ function StateNetExplorer:pressed(button)
         end
         if button == "a" and #hosts > 0 then
             menuMode = "action"
-            SoundSelect:play()
+            RpgLook:soundSelect()
         end
         if button == "up" and #hosts > 0 then
             currentPerson = currentPerson - 1
-            menuMoveSound()
+            RpgLook:soundMove()
         end
         if button == "down" and #hosts > 0 then
             currentPerson = currentPerson + 1
-            menuMoveSound()
+            RpgLook:soundMove()
         end
     else
         if button == "b" then
-            SoundSelect:play()
+            RpgLook:soundSelect()
             menuMode = "person"
         end
         if button == "a" then
-            SoundAction:play()
+            RpgLook:soundAction()
             handleAction(actions[currentAction], hosts[currentPerson])
         end
         if button == "up" then
             currentAction = currentAction - 1
-            menuMoveSound()
+            RpgLook:soundMove()
         end
         if button == "down" then
             currentAction = currentAction + 1
-            menuMoveSound()
+            RpgLook:soundMove()
         end
     end
     
@@ -156,24 +122,28 @@ function StateNetExplorer:pressed(button)
 end
 
 function StateNetExplorer:draw()
-    drawBox(0, 0, 240, 240)
-    drawBox(240, 0, 80, 240)
+    RpgLook:drawBox(0, 0, 240, 240)
+    RpgLook:drawBox(240, 0, 80, 240)
 
     local p = math.floor((currentPerson-1) / 4)
     local o = p * 4
 
-    for i = 1,4 do
-        local t = i + o
-        local host = hosts[t]
-        if host then
-            drawOnePerson(i, faces[(t % #faces) + 1], host.hostname, host.ipv4, host.mac )
-        end
-    end    
-    
-    drawActions()
-
     if #hosts > 0 then
-        drawPointer()
+        for i = 1,4 do
+            local t = i + o
+            local host = hosts[t]
+            if host then
+                drawOnePerson(i, faces[(t % #faces) + 1], host.hostname, host.ipv4, host.mac )
+            end
+        end
+        drawActions()
+
+        -- draw person icon either way
+        RpgLook:drawPointer(5, 30 + (58 * ((currentPerson-1) % 4)))
+
+        if menuMode == "action" then
+            RpgLook:drawPointer(240, 28 + (20 * (currentAction-1)))
+        end
     else
         love.graphics.setFont(FontBasic)
         love.graphics.setColor(1, 1, 1, 1)
