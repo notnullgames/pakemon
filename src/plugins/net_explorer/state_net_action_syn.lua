@@ -38,16 +38,19 @@ function StateNetActionSyn:leave()
 end
 
 function StateNetActionSyn:draw()
+    RpgLook:drawBox(0, 0, 320, 60)
+    
     love.graphics.setFont(FontBasic)
     love.graphics.setColor(1, 1, 1, 1)
     
-    RpgLook:drawBox(0, 0, 320, 60)
     RpgLook:drawFace(macToDec(self.host.mac), 10, 5, 0.5, 0.5)
     love.graphics.print(shortenText(self.host.hostname, 36), 70, 10)
     love.graphics.print(shortenText(self.host.ipv4, 36), 70, 25)
     love.graphics.print(shortenText(self.host.mac, 36), 70, 40)
 
     RpgLook:drawBox(0, 60, 320, 180)
+
+    love.graphics.setColor(1, 1, 1, 1)
 
     if output and output ~= "" then
         love.graphics.printf(output,5, 65, 310)
