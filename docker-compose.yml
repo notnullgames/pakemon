@@ -15,16 +15,19 @@ services:
         hostname: nowasp
         networks:
             - pakemon
+    
     webgoat:
         image: webgoat/webgoat-7.1
         hostname: webgoat
         networks:
             - pakemon
+    
     dvwa:
         image: citizenstig/dvwa
         hostname: dvwa
         networks:
             - pakemon
+    
     securityshepherd:
         image: ismisepaul/securityshepherd
         hostname: securityshepherd

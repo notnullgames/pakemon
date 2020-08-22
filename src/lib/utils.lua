@@ -118,7 +118,7 @@ end
 
 -- simple HTTP POST of JSON
 function httpPostJson(url, body)
-  local r = httpPostText(url, json.encode(body))
+  local r = httpPostText(url, body)
   return r and json.decode(r)
 end
 

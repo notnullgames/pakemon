@@ -37,10 +37,14 @@ local function handleAction(actionName, host)
     end
 end
 
+-- mac address to a sortable decimal
+local function macToDec(mac)
+    return tonumber('0x' .. string.gsub(mac, ":", ""))
+end
 
 -- draw 1 person
 local function drawOnePerson(y, index, hostname, ip, mac)
-    RpgLook:drawFace(index, 20, 10 + (y-1) * 58, 0.5, 0.5)
+    RpgLook:drawFace(macToDec(mac), 20, 10 + (y-1) * 58, 0.5, 0.5)
     love.graphics.setFont(FontBasic)
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.print(shortenText(hostname, 22), 80, 10 + (y-1) * 58)
@@ -55,11 +59,6 @@ local function drawActions()
     for i, action in pairs(actions) do
         love.graphics.print(action, 260, 25 + (i-1) * 20)
     end
-end
-
--- mac address to a sortable decimal
-local function macToDec(mac)
-    return tonumber('0x' .. string.gsub(mac, ":", ""))
 end
 
 -- get list of hosts on network
