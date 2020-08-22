@@ -39,7 +39,6 @@ end
 -- draw 1 person
 local function drawOnePerson(y, index, hostname, ip, mac)
     RpgLook:drawFace(macToDec(mac), 20, 10 + (y-1) * 58, 0.5, 0.5)
-    love.graphics.setFont(FontBasic)
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.print(shortenText(hostname, 22), 80, 10 + (y-1) * 58)
     love.graphics.print(shortenText(ip, 22), 80, 28 + (y-1) * 58)
@@ -133,6 +132,9 @@ function StateNetExplorer:draw()
     local p = math.floor((currentPerson-1) / 4)
     local o = p * 4
 
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setFont(FontBasic)
+
     if #hosts > 0 then
         for i = 1,4 do
             local t = i + o
@@ -150,8 +152,6 @@ function StateNetExplorer:draw()
             RpgLook:drawPointer(240, 28 + (20 * (currentAction-1)))
         end
     else
-        love.graphics.setFont(FontBasic)
-        love.graphics.setColor(1, 1, 1, 1)
         love.graphics.print("Looking for hosts...", 20, 20)
     end
 end
