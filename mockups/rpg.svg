@@ -27,10 +27,10 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="98.431349"
-     inkscape:cy="-3.5836975"
+     inkscape:cx="129.74608"
+     inkscape:cy="19.144735"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer3"
      showgrid="false"
      units="px"
      inkscape:pagecheckerboard="false"
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -88,15 +88,15 @@
        id="rect4853-7"
        width="63.5"
        height="63.5"
-       x="88.238541"
-       y="0.18898807" />
+       x="110.63679"
+       y="-7.1054274e-15" />
     <rect
        style="fill:#090063;fill-opacity:1;stroke:#ffffff;stroke-width:0.52916664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.95238097"
        id="rect4857-5"
        width="21.166666"
        height="63.5"
-       x="151.20938"
-       y="0.18898807" />
+       x="89.470123"
+       y="-7.1054274e-15" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Monoid Nerd Font';-inkscape-font-specification:'Monoid Nerd Font';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
