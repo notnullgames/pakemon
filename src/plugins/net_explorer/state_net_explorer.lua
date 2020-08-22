@@ -29,17 +29,11 @@ local function handleAction(actionName, host)
 
     if stateNext ~= nil then
         -- tell the next state about host-choice, and change to it
-        stateNext.hostIndex = currentPerson
         stateNext.host = host
         Gamestate.switch(stateNext)
     else
         plugins.personality:notify("Action not implemented: " .. actionName)
     end
-end
-
--- mac address to a sortable decimal
-local function macToDec(mac)
-    return tonumber('0x' .. string.gsub(mac, ":", ""))
 end
 
 -- draw 1 person

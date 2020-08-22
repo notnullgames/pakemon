@@ -82,6 +82,10 @@ function dump(o)
   end
 end
 
+-- mac address to a sortable decimal (for images and stuff)
+function macToDec(mac)
+  return tonumber('0x' .. string.gsub(mac, ":", ""))
+end
 
 -- simple HTTP get text
 function httpGetText(url)
