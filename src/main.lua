@@ -34,7 +34,7 @@ local creditsApp = [[
 plugins = {}
 files = love.filesystem.getDirectoryItems("plugins")
 for _,p in pairs(files) do
-  print("plugins."..p..".plugin")
+  print("plugins."..p..".plugin found")
   if string.sub(p, 1, 1) ~= '.' then
     plugins[p] = require("plugins."..p..".plugin")
   end

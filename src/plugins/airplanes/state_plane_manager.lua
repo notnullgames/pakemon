@@ -5,7 +5,7 @@ local StatePlaneManager = {}
 function StatePlaneManager:draw()
     love.graphics.setFont(FontBasic)
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.printf("Not setup yet. \nNeed ot tie map + menu together, here.", 50, 90, 200, "center")
+    love.graphics.printf("Not setup yet. \nNeed to tie map + menu together, here.", 50, 90, 200, "center")
 
 end
 
