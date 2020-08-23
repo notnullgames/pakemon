@@ -155,7 +155,8 @@ end
 function httpGetMap(markers, style)
   local url = "https://api.mapbox.com/styles/v1/mapbox/" .. (style or "dark-v10") .. "/static/"
   for i,v in pairs(markers) do
-    url = url .. "url-" .. encodeURI("https://dynamic-icons.vercel.app/api?alt="..v[3].."&rot="..v[4].."&hex="..v[5]) .. "(" .. v[1] .. "," .. v[2] .. ")"
+    local u = "https://dynamic-icons.vercel.app/api?alt="..v[3].."&rot="..v[4].."&hex="..v[5]
+    url = url .. "url-" .. encodeURI(u) .. "(" .. v[2] .. "," .. v[1] .. ")"
     if i ~= #markers then
       url = url .. ","
     end

@@ -27,11 +27,8 @@ end
 local function handleAction(actionName, host)
     local stateNext
 
-    if actionName == "Syn" then
-        stateNext = StateNetActionSyn
-    end 
     if actionName == "Scan" then
-        stateNext =  StateNetActionNmap
+        stateNext =  StateNetActionMenu
     end
     if actionName == "Restart" then
         restartBettercap()
