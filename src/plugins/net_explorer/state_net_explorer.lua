@@ -2,13 +2,13 @@ local StateNetExplorer = {}
 
 local actions = {
     "Syn",
-    "Magic",
-    "Equip",
+    "Scan",
+    "Exploit",
     "Status",
-    "Form",
-    "Change",
+    "Auto",  
     "Custom",
-    "Save"
+    "Save",
+    "Restart"
 }
 
 -- things that track current state
@@ -18,20 +18,31 @@ local currentPerson = 1
 local currentAction = 1
 local timerhandle
 
+local function restartBettercap () 
+    bettercap('net.probe off')
+    bettercap('net.probe on')
+end
 
 -- put your handler here. You have access to the host and the action
 local function handleAction(actionName, host)
     local stateNext
 
     if actionName == "Syn" then
-        stateNext = StateNetActionSyn   
+        stateNext = StateNetActionSyn
+    end 
+    if actionName == "Scan" then
+        stateNext =  StateNetActionNmap
     end
-
+    if actionName == "Restart" then
+        restartBettercap()
+        stateNext = StateNetExplorer
+    end
     if stateNext ~= nil then
         -- tell the next state about host-choice, and change to it
         stateNext.host = host
         Gamestate.switch(stateNext)
     else
+    
         plugins.personality:notify("Action not implemented: " .. actionName)
     end
 end
@@ -39,6 +50,7 @@ end
 -- draw 1 person
 local function drawOnePerson(y, index, hostname, ip, mac)
     RpgLook:drawFace(macToDec(mac), 20, 10 + (y-1) * 58, 0.5, 0.5)
+    love.graphics.setFont(FontBasic)
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.print(shortenText(hostname, 22), 80, 10 + (y-1) * 58)
     love.graphics.print(shortenText(ip, 22), 80, 28 + (y-1) * 58)
@@ -47,7 +59,6 @@ end
 
 -- draw the actions menu
 local function drawActions()
-    love.graphics.setFont(FontDefault)
     love.graphics.setColor(1, 1, 1, 1)
     for i, action in pairs(actions) do
         love.graphics.print(action, 260, 25 + (i-1) * 20)
@@ -65,7 +76,7 @@ local function updateHosts()
 end
 
 function StateNetExplorer:enter()
-    timerhandle = Timer.every(2, updateHosts)
+    timerhandle = Timer.every(3, updateHosts)
     updateHosts()
     bettercap('net.probe on')
 end
@@ -132,8 +143,10 @@ function StateNetExplorer:draw()
     local p = math.floor((currentPerson-1) / 4)
     local o = p * 4
 
-    love.graphics.setColor(1, 1, 1, 1)
     love.graphics.setFont(FontBasic)
+    love.graphics.setColor(1, 1, 1, 1)
+        
+
 
     if #hosts > 0 then
         for i = 1,4 do
@@ -152,6 +165,7 @@ function StateNetExplorer:draw()
             RpgLook:drawPointer(240, 28 + (20 * (currentAction-1)))
         end
     else
+
         love.graphics.print("Looking for hosts...", 20, 20)
     end
 end
