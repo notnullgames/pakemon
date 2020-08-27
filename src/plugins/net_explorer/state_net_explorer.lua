@@ -1,14 +1,7 @@
 local StateNetExplorer = {}
 
 local actions = {
-    "Syn",
-    "Scan",
-    "Exploit",
-    "Status",
-    "Auto",  
-    "Custom",
-    "Save",
-    "Restart"
+    "Ports"
 }
 
 -- things that track current state
@@ -27,19 +20,15 @@ end
 local function handleAction(actionName, host)
     local stateNext
 
-    if actionName == "Scan" then
-        stateNext =  StateNetActionMenu
+    if actionName == "Ports" then
+        stateNext =  StateNetActionScan
     end
-    if actionName == "Restart" then
-        restartBettercap()
-        stateNext = StateNetExplorer
-    end
+
     if stateNext ~= nil then
         -- tell the next state about host-choice, and change to it
         stateNext.host = host
         Gamestate.switch(stateNext)
     else
-    
         plugins.personality:notify("Action not implemented: " .. actionName)
     end
 end
@@ -118,7 +107,6 @@ function StateNetExplorer:pressed(button)
             RpgLook:soundMove()
         end
     end
-    
     if currentPerson > #hosts then
         currentPerson = 1
     end
@@ -142,8 +130,6 @@ function StateNetExplorer:draw()
 
     love.graphics.setFont(FontBasic)
     love.graphics.setColor(1, 1, 1, 1)
-        
-
 
     if #hosts > 0 then
         for i = 1,4 do
@@ -162,7 +148,6 @@ function StateNetExplorer:draw()
             RpgLook:drawPointer(240, 28 + (20 * (currentAction-1)))
         end
     else
-
         love.graphics.print("Looking for hosts...", 20, 20)
     end
 end
