@@ -1,5 +1,6 @@
 StateNetExplorer = require "plugins.net_explorer.state_net_explorer"
 StateNetActionMenu = require "plugins.net_explorer.state_net_action_menu"
+StateNetActionMenu = require "plugins.net_explorer.state_net_action_syn"
 
 local net_explorer = { }
 
