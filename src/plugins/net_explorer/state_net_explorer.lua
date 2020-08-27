@@ -2,12 +2,6 @@ local StateNetExplorer = {}
 
 local actions = {
     "Syn",
-    "Scan",
-    "Exploit",
-    "Status",
-    "Auto",  
-    "Custom",
-    "Save",
     "Restart"
 }
 
@@ -27,9 +21,11 @@ end
 local function handleAction(actionName, host)
     local stateNext
 
-    if actionName == "Scan" then
-        stateNext =  StateNetActionMenu
+
+    if actionName == "Syn" then
+        stateNext = StateNetActionSyn
     end
+
     if actionName == "Restart" then
         restartBettercap()
         stateNext = StateNetExplorer
