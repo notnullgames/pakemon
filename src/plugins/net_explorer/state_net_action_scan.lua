@@ -1,4 +1,4 @@
-local StateNetActionScan = {}
+local StateNetActionSyn = {}
 
 -- this will hold the log of the output
 local output = ""
@@ -26,18 +26,18 @@ end
 
 local timerhandle
 
-function StateNetActionScan:enter()
+function StateNetActionSyn:enter()
     bettercap("syn.scan "..self.host.ipv4)
     timerhandle = Timer.every(2, function() data = getPortsForMac(self.host.mac)  end)
     getPortsForMac(self.host.mac)
 end
 
-function StateNetActionScan:leave()
+function StateNetActionSyn:leave()
     bettercap("syn.scan off")
     Timer.cancel(timerhandle)
 end
 
-function StateNetActionScan:draw()
+function StateNetActionSyn:draw()
     RpgLook:drawBox(0, 0, 320, 60)
     
     love.graphics.setFont(FontBasic)
@@ -59,10 +59,10 @@ function StateNetActionScan:draw()
     end
 end
 
-function StateNetActionScan:pressed(button)
+function StateNetActionSyn:pressed(button)
     if button == "b" then
         Gamestate.switch(StateNetExplorer)
     end
 end
 
-return StateNetActionScan
+return StateNetActionSyn
