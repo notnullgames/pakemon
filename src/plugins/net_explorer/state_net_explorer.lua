@@ -1,7 +1,8 @@
 local StateNetExplorer = {}
 
 local actions = {
-    "Ports"
+    "Ports",
+    "Exploit"
 }
 
 -- things that track current state
@@ -22,6 +23,10 @@ local function handleAction(actionName, host)
 
     if actionName == "Ports" then
         stateNext =  StateNetActionScan
+    end
+
+    if actionName == "Exploit" then
+        stateNext =  StateNetActionExploit
     end
 
     if stateNext ~= nil then
