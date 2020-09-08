@@ -1,7 +1,7 @@
 --
 -- lume
 --
--- Copyright (c) 2018 rxi
+-- Copyright (c) 2020 rxi
 --
 -- Permission is hereby granted, free of charge, to any person obtaining a copy of
 -- this software and associated documentation files (the "Software"), to deal in
@@ -286,8 +286,8 @@ end
 
 
 function lume.reduce(t, fn, first)
+  local started = first ~= nil
   local acc = first
-  local started = first and true or false
   local iter = getiter(t)
   for _, v in iter(t) do
     if started then
@@ -724,7 +724,7 @@ end
 local ripairs_iter = function(t, i)
   i = i - 1
   local v = t[i]
-  if v ~= nil then 
+  if v ~= nil then
     return i, v
   end
 end

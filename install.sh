@@ -18,6 +18,6 @@ fi
 sudo ln -s /opt/pakemon/start.sh /usr/local/bin/pakemon
 
 cd /opt/pakemon
-for plugin in src/plugins/*/setup.sh; do
+for plugin in src/modules/*/setup.sh; do
     $plugin
 done

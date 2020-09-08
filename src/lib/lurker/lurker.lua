@@ -17,30 +17,14 @@ local lurker = { _version = "1.0.1" }
 local dir = love.filesystem.enumerate or love.filesystem.getDirectoryItems
 local time = love.timer.getTime or os.time
 
-local isdir
-local lastmodified
-
-if love.filesystem.getInfo then
-  isdir = function(path)
-    return (love.filesystem.getInfo(path, 'directory') ~= nil)
-  end
-
-  lastmodified = function(path)
+local function isdir(path)
     local info = love.filesystem.getInfo(path)
+    return info.type == "directory"
+end
 
-    if info == nil then
-      return nil, 'File does not exist'
-    end
-
-    if info.modtime == nil then
-      return nil, 'Could not determine file modification date.'
-    end
-
+local function lastmodified(path)
+    local info = love.filesystem.getInfo(path, "file")
     return info.modtime
-  end
-else
-  isdir = love.filesystem.isDirectory
-  lastmodified = love.filesystem.getLastModified
 end
 
 local lovecallbacknames = {
@@ -57,7 +41,7 @@ local lovecallbacknames = {
 
 
 function lurker.init()
-  -- lurker.print("Initing lurker")
+  lurker.print("Initing lurker")
   lurker.path = "."
   lurker.preswap = function() end
   lurker.postswap = function() end
