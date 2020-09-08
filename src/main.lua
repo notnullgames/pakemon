@@ -50,6 +50,7 @@ end
 
 function love.update(dt)
   lovebird.update()
+  lurker.update()
   Gamestate.update(dt)
   Timer.update(dt)
   -- if a module has update() call it, for off-screen updates
