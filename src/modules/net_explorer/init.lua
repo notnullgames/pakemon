@@ -6,7 +6,6 @@ local ModuleNetExplorer = { }
 
 function ModuleNetExplorer:load()
     table.insert(pakemon.menu.menuItems[1], { "Net Diver", function()  Gamestate.switch(StateNetExplorer) end })
-    table.insert(pakemon.menu.menuItems[2], { "Print", function() print("hello") end })
 end
 
 return ModuleNetExplorer

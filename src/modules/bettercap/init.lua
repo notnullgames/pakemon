@@ -17,6 +17,7 @@ function ModuleBettercap:restartProbe()
 end
 
 function ModuleBettercap:load()
+  pakemon.credits.text = pakemon.credits.text .. "Bettercap is used for networking functionality.\n"
 end
 
 return ModuleBettercap
