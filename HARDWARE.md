@@ -3,6 +3,7 @@
 * $20 - [UPS power](https://www.aliexpress.com/item/32954180664.html?spm=2114.search0302.3.9.69cd3c36la2eDi&ws_ab_test=searchweb0_0,searchweb201602_0,searchweb201603_0,ppcSwitch_0&algo_pvid=aeb00137-ee67-4916-813d-8221e5e66385&algo_expid=aeb00137-ee67-4916-813d-8221e5e66385-1)
 * $12 - [hub + network](https://www.amazon.com/gp/product/B078MNW25Q/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1)
 * $22 - [rtl-sdr](https://www.nooelec.com/store/nesdr-nano2.html)
+* $8 - [cheap USB controller](https://usa.banggood.com/DATA-FROG-Wired-USB-Gamepad-Gaming-Joypad-for-Windows7-or-8-or-10-or-MAC-Computer-Game-Controller-p-1681258.html?rmmds=search&ID=6287845&cur_warehouse=CN)
 
 - pull hub out of case, hook up to pi
 - hook pi HDMI up to screen (with short HDMI cable)
@@ -10,3 +11,4 @@
 - hook UPS to pi
 - plug rtl-sdr into USB hub
 - use rpitx for transmit
+- chop up controller to fit in gameboy form-factor
