@@ -1,35 +1,35 @@
 local StateGeoMap = {}
 
 -- this comes from portapack mayhem
-love.filesystem.mount('modules/geomap/world_map.zip', 'modules/geomap', true)
-local mapData = love.filesystem.newFileData('modules/geomap/world_map.bin')
+love.filesystem.mount('modules/geomap/map.zip', 'modules/geomap/map', true)
 
-local function getMapImage(lat, long, alt)
-  local map = love.image.newImageData(320, 240)
-  -- TODO: insert pixels (in RRR00GGG000BB000 format) from mapData into map
-  -- map.setPixel(x,y,r,g,b,a) rgb is 0-1
-  -- this is not right, but basic idea:
-  for x=1,320 do
-    for y=1,240 do
-      local d = love.data.unpack('BBBBBBBBBBBBBBB', mapData, x*y*15)
-      local r = d[1] + d[2] + d[3]
-      local g = d[6] + d[7] + d[8]
-      local b = d[12] + d[13]
-      map.setPixel(x, y, r, g, b, 1)
-    end
-  end
-  return love.graphics.newImage(map)
+function asinh (x)
+  return math.log(x + math.sqrt(x * x + 1))
+end
+
+function coordsToTile(lat, lon, zoom)
+  local lat_rad = math.rad(lat)
+  local n = 2.0 ^ zoom
+  local xtile = math.floor((lon + 180.0) / 360.0 * n)
+  local ytile = math.floor((1.0 - asinh(math.tan(lat_rad)) / math.pi) / 2.0 * n)
+  return xtile, ytile
+end
+
+function getMapImage(lat, lon, zoom)
+  local x,y = coordsToTile(lat, lon, zoom)
+  -- todo: get tiles around the tile, and crop it to screen
+  return love.graphics.newImage('modules/geomap/map/' .. zoom .. '/' .. x .. '/' .. y .. '.jpg')
 end
 
 local mapImage
 
 -- center of map
 local lat = 45.512230
-local long = -122.658722
-local alt = 8500
+local lon = -122.658722
+local zoom = 5
 
 function StateGeoMap:enter()
-  mapImage = getMapImage(lat, long, alt)
+  mapImage = getMapImage(lat, lon, zoom)
 end
 
 function StateGeoMap:draw()

@@ -1,10 +1,12 @@
+-- uncomment to run file-watching. it will make things slow
+-- lurker = require "lib.lurker.lurker"
+
 -- global libs
 Camera = require "lib.hump.camera"
 Class = require "lib.hump.class"
 Gamestate = require "lib.hump.gamestate"
 Timer = require "lib.hump.timer"
 anim8 = require "lib.anim8.anim8"
-lurker = require "lib.lurker.lurker"
 lovebird = require "lib.lovebird.lovebird"
 require "lib.inputmap"
 require "lib.shared"
@@ -13,10 +15,12 @@ require "lib.shared"
 lovebird.whitelist = nil
 
 -- call current GameState's enter() on hot-reload
-lurker.postswap = function()
-  local gs = Gamestate.current()
-  if gs and gs.enter then
-    gs:enter()
+if (lurker) then
+  lurker.postswap = function()
+    local gs = Gamestate.current()
+    if gs and gs.enter then
+      gs:enter()
+    end
   end
 end
 
@@ -50,7 +54,9 @@ end
 
 function love.update(dt)
   lovebird.update()
-  lurker.update()
+  if (lurker) then
+    lurker.update()
+  end
   Gamestate.update(dt)
   Timer.update(dt)
   -- if a module has update() call it, for off-screen updates
