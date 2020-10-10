@@ -5,14 +5,13 @@ local mapImage
 -- center of map
 local lat = 45.512230
 local lon = -122.658722
-local zoom = 5
+local zoom = 10
 
 -- manage real tile location
 local x
 local y
 local xoffset
 local yoffset
-
 
 function asinh (x)
   return math.log(x + math.sqrt(x * x + 1))
