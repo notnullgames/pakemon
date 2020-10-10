@@ -44,12 +44,27 @@ function StateGeoMap:draw()
   love.graphics.setColor(1, 1, 1, 1)
   -- ( drawable, x, y, r, sx, sy, ox, oy )
   love.graphics.draw(mapImage, 0, 0, 0)
+  love.graphics.printf(zoom.."X", 0, 0, 320, "right")
 end
 
 function StateGeoMap:pressed(button)
   if button == 'b' then
     Gamestate.switch(StateMainMenu)
   end
+  
+  if button == 'up' then
+    zoom = zoom + 1
+  end
+  if button == 'down' then
+    zoom =zoom - 1
+  end
+  if zoom < 5 then
+    zoom = 10
+  end
+  if zoom > 10 then
+    zoom = 5
+  end
+  updateMapImage()
 end
 
 return StateGeoMap
