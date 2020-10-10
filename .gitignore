@@ -1,2 +1,3 @@
 .DS_Store
 dist/
+src/modules/geomap/world_map.zip
