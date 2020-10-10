@@ -25,7 +25,6 @@ function StateShowPwnagotchi:draw()
         love.graphics.rectangle("fill", 0, 0, 320, 240)
         love.graphics.draw( image, 0, 40, 0, 1.48, 1.48)
     else
-        love.graphics.setFont(FontBasic)
         love.graphics.print("Loading your pwnigotchi...", 60, 100)
     end
 end

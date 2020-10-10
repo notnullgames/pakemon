@@ -34,7 +34,6 @@ end
 function updateMapImage()
   x, y, xoffset, yoffset = coordsToTile(lat, lon, zoom)
   -- todo: get tiles around the tile, and crop it to screen
-  print('modules/geomap/tiles/' .. zoom .. '/' .. x .. '/' .. y .. '.jpg')
   mapImage = love.graphics.newImage('modules/geomap/tiles/' .. zoom .. '/' .. x .. '/' .. y .. '.jpg')
 end
 
@@ -43,7 +42,9 @@ function StateGeoMap:enter()
 end
 
 function StateGeoMap:draw()
-  love.graphics.draw(mapImage, 0, 0)
+  love.graphics.setColor(1, 1, 1, 1)
+  -- ( drawable, x, y, r, sx, sy, ox, oy )
+  love.graphics.draw(mapImage, 0, 0, 0)
 end
 
 function StateGeoMap:pressed(button)
