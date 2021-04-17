@@ -1,15 +1,22 @@
 version: "3.5"
 
 services:
-    pakemon:
-        build: .
-        ports:
-            - "8081:8081"
+    # this gives you a CLI to interrogate
+    haxor:
+        image: kalilinux/kali-rolling
+        tty: true
         networks:
             - pakemon
     
+    # this is the demo backend
+    pakemon:
+        build: .
+        ports:
+            - "12345:12345"
+        networks:
+            - pakemon
+
     # these are targets:
-    
     nowasp:
         image: citizenstig/nowasp
         hostname: nowasp
