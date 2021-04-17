@@ -1,11 +1,5 @@
---- reusable map for joystiuc & keyboard, for gpi gameby-like pi
+--- reusable map for joystick & keyboard, for gpi gameboy-like pi
 --- this simplifies input into a single callback for keys & gamepad
-
--- override these
-function input_pressed(button)
-end
-function input_released(button)
-end
 
 function love.gamepadpressed(joystick, button)
    -- global full-exit on retropie is start+select
@@ -55,6 +49,22 @@ function love.keypressed(key, code)
   if love.keyboard.isDown('return') and love.keyboard.isDown('escape') then
     love.event.quit()
   end
+  
+-- load scene
+  if love.keyboard.isDown('f11') then
+    input_pressed('scene')
+  end
+
+  -- toggle dev
+  if love.keyboard.isDown('f12') then
+      input_pressed('dev')
+  end
+
+  -- relaod current scene
+  if love.keyboard.isDown('f5') then
+      input_pressed('reload')
+  end
+
   if key == 'up' then
     input_pressed('up')
   end

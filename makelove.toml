@@ -1,0 +1,9 @@
+name = "pakemon"
+default_targets = ["win64", "macos", "appimage"]
+build_directory = "../build"
+
+love_files = [
+    "::git-ls-tree::",
+    "-*/.*",
+]
+
