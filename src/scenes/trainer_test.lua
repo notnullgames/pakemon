@@ -6,7 +6,7 @@ local SceneTrainerTest = {}
 
 local updaterate = 4 -- how long to wait, in seconds, before requesting an update
 
-local response = "Please wait..."
+local response = "Run your local trainer to test."
 local t = 0
 
 -- called when this loads
