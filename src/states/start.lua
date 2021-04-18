@@ -1,5 +1,9 @@
 -- this shows new/continue screen
 
+local patchy = require("lib.patchy")
+
+local rpg = patchy.load("assets/rpg.9.png")
+
 local StateStart = {}
 
 local hasContinue = false
@@ -48,13 +52,27 @@ end
 -- callled in main draw loop
 function StateStart:draw()
   love.graphics.setColor(1, 1, 1, 1)
+
   if hasContinue then
+    rpg:draw(100, 86, 120, 65)
     love.graphics.printf("Continue", 130, 100, 320)
     love.graphics.printf("New Game", 130, 120, 320)
     love.graphics.print("-", 120, 100 + (currentChoice * 20))
   else
-    love.graphics.printf("- New Game", 0, 110, 320, "center")
+    rpg:draw(100, 95, 120, 55)
+    love.graphics.printf("-  New Game", 0, 114, 320, "center")
   end
 end
+
+
+-- local lurker = require("lib.lurker")
+
+-- lurker.preswap = function(f)
+--   set_current_state(gamestate_name)
+-- end
+
+-- function StateStart:update()
+--   lurker.update()
+-- end
 
 return StateStart

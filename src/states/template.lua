@@ -1,5 +1,8 @@
 local StateTemplate = {}
 
+-- this kills performance, but is good for lining things up
+local RELOAD = true
+
 -- called when this loads
 function StateTemplate:load()
 end
@@ -10,6 +13,18 @@ end
 
 -- called to update logic
 function StateTemplate:update(dt, totaltime)
+end
+
+if RELOAD then
+  local lurker = require("lib.lurker")
+  
+  lurker.preswap = function(f)
+    set_current_state(gamestate_name)
+  end
+
+  function StateTemplate:update()
+    lurker.update()
+  end
 end
 
 -- called when a button is pressed
