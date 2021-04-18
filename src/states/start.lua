@@ -5,6 +5,7 @@ local patchy = require("lib.patchy")
 local rpg = patchy.load("assets/rpg.9.png")
 local sound_move = love.audio.newSource("assets/move.wav", "static")
 local sound_ok = love.audio.newSource("assets/ok.wav", "static")
+local pointer = love.graphics.newImage("assets/pointer.png")
 
 local StateStart = {}
 
@@ -62,20 +63,19 @@ function StateStart:draw()
     rpg:draw(100, 86, 120, 65)
     love.graphics.printf("Continue", 130, 100, 320)
     love.graphics.printf("New Game", 130, 120, 320)
-    love.graphics.print("-", 120, 100 + (currentChoice * 20))
+    love.graphics.draw(pointer, 108, 100 + (currentChoice * 20))
   else
     rpg:draw(100, 95, 120, 55)
-    love.graphics.printf("-  New Game", 0, 114, 320, "center")
+    love.graphics.printf("New Game", 0, 114, 320, "center")
+    love.graphics.draw(pointer, 108, 115)
   end
 end
 
 
 -- local lurker = require("lib.lurker")
-
 -- lurker.preswap = function(f)
 --   set_current_state(gamestate_name)
 -- end
-
 -- function StateStart:update()
 --   lurker.update()
 -- end

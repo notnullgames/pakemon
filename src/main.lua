@@ -67,7 +67,7 @@ function set_current_state(name)
 end
 
 function save_player()
-    return love.filesystem.write( "test.lua", table.show(PLAYER, "PLAYER"))
+    return love.filesystem.write( "savegame.lua", table.show(PLAYER, "PLAYER"))
 end
 
 function load_player()
