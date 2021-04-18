@@ -21,7 +21,7 @@ function StateTrainerTest:update(dt, totaltime)
   -- you don't want to overload the server, so don't do requests on every frame
   t = t + dt
   if  t > updaterate then
-    response = trainer("hello", "Pakemon" .. os.time())
+    response = trainer("hello", "Pakemon" .. os.time()).msg
     t=t-updaterate -- set t for the next round
   end
 end

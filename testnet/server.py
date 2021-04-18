@@ -12,7 +12,7 @@ class MyUDPHandler(socketserver.BaseRequestHandler):
         args = inp['args']
         print(f"{self.client_address[0]} command: {cmd}")
         if cmd == "hello":
-          r = json.dumps([f"oh hi {args[0]}, how's it going?"])
+          r = json.dumps({msg: f"oh hi {args[0]}, how's it going?"})
           socket.sendto(r.encode('utf8'), self.client_address)
 
 print("Starting simple UDP socket server on port 12345")

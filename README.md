@@ -2,10 +2,6 @@
 
 Short for "packet monitor/monster". Gamified fun device/platform for hacking technology around you.
 
-## installation
-
-You should have love in your path. Run `love src` to start frontend.
-
 ## local dev
 
 There is a Makefile included with a few targets for dev. Run `make` for help.
