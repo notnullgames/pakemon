@@ -1,31 +1,31 @@
 -- this should be a welcome animation (start of new game)
 
-local StateWelcome = {}
+local SceneWelcome = {}
 
 -- called when this loads
-function StateWelcome:load()
+function SceneWelcome:load()
 end
 
--- called when some othe rstate is chosen
-function StateWelcome:unload()
+-- called when some othe rscene is chosen
+function SceneWelcome:unload()
 end
 
 -- called to update logic
-function StateWelcome:update(dt, totaltime)
+function SceneWelcome:update(dt, totaltime)
 end
 
 -- called when a button is pressed
-function StateWelcome:pressed(button)
+function SceneWelcome:pressed(button)
 end
 
 -- called when a button is released
-function StateWelcome:released(button)
+function SceneWelcome:released(button)
 end
 
 -- callled in main draw loop
-function StateWelcome:draw()
+function SceneWelcome:draw()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.printf("Welcome Animation here", 0, 110, 320, "center")
 end
 
-return StateWelcome
+return SceneWelcome

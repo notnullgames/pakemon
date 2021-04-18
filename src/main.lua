@@ -9,12 +9,12 @@ DEV = false
 love.graphics.setDefaultFilter('nearest', 'nearest')
 
 -- global savable player info 
-PLAYER = { level = 0 }
+PLAYER = { level = 0, scene = "welcome" }
 
 
 function input_pressed(button)
-    if current_gamestate and current_gamestate.pressed then
-        current_gamestate:pressed(button)
+    if current_gamescene and current_gamescene.pressed then
+        current_gamescene:pressed(button)
     end
 
     if button == 'dev' then
@@ -22,11 +22,11 @@ function input_pressed(button)
     end
 
     if button == 'scene' then
-        set_current_state("sceneloader")
+        set_current_scene("sceneloader")
     end
 
     if button == 'reload' then
-        set_current_state(gamestate_name)
+        set_current_scene(gamescene_name)
     end
 
     if DEV then
@@ -35,8 +35,8 @@ function input_pressed(button)
 end
 
 function input_released(button)
-    if current_gamestate and current_gamestate.released then
-        current_gamestate:released(button)
+    if current_gamescene and current_gamescene.released then
+        current_gamescene:released(button)
     end
 
     if DEV then
@@ -44,25 +44,25 @@ function input_released(button)
     end
 end
 
--- set the current gamestate, unload the old one
-function set_current_state(name)
+-- set the current gamescene, unload the old one
+function set_current_scene(name)
     if DEV then
         print('Scene: ' .. name)
         print(c('%{green}Scene:  %{reset}' .. name))
     end
-    if current_gamestate and current_gamestate.unload then
-        current_gamestate:unload(newState)
+    if current_gamescene and current_gamescene.unload then
+        current_gamescene:unload(newscene)
     end
-    current_gamestate = nil
+    current_gamescene = nil
     collectgarbage('collect')
-    gamestate_name = name
-    local code, errr = love.filesystem.load('states/' .. name .. '.lua')
+    gamescene_name = name
+    local code, errr = love.filesystem.load('scenes/' .. name .. '.lua')
     if err and DEV then
         print(c('%{red}%Error:  %{reset}' .. err))
     end
-    current_gamestate = code()
-    if current_gamestate.load then
-        current_gamestate:load()
+    current_gamescene = code()
+    if current_gamescene.load then
+        current_gamescene:load()
     end
 end
 
@@ -79,20 +79,20 @@ function load_player()
 end
 
 function love.load()
-    set_current_state("intro")
+    set_current_scene("intro")
 end
 
 local totaltime = 0
 function love.update(dt)
     totaltime = totaltime + dt
-    if current_gamestate.update then
-        current_gamestate:update(dt, totaltime)
+    if current_gamescene.update then
+        current_gamescene:update(dt, totaltime)
     end
 end
 
 function love.draw()
-    if current_gamestate.draw then
-        current_gamestate:draw()
+    if current_gamescene.draw then
+        current_gamescene:draw()
     end
     
     love.graphics.setColor( 1, 1, 1, 0.5 )

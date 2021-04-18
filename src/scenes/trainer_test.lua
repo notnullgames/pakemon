@@ -2,7 +2,7 @@
 
 local trainer = require('lib.trainer')
 
-local StateTrainerTest = {}
+local SceneTrainerTest = {}
 
 local updaterate = 4 -- how long to wait, in seconds, before requesting an update
 
@@ -10,15 +10,15 @@ local response = "Please wait..."
 local t = 0
 
 -- called when this loads
-function StateTrainerTest:load()
+function SceneTrainerTest:load()
 end
 
--- called when some othe rstate is chosen
-function StateTrainerTest:unload()
+-- called when some othe rscene is chosen
+function SceneTrainerTest:unload()
 end
 
 -- called to update logic
-function StateTrainerTest:update(dt, totaltime)
+function SceneTrainerTest:update(dt, totaltime)
   -- you don't want to overload the server, so don't do requests on every frame
   t = t + dt
   if  t > updaterate then
@@ -28,17 +28,17 @@ function StateTrainerTest:update(dt, totaltime)
 end
 
 -- called when a button is pressed
-function StateTrainerTest:pressed(button)
+function SceneTrainerTest:pressed(button)
 end
 
 -- called when a button is released
-function StateTrainerTest:released(button)
+function SceneTrainerTest:released(button)
 end
 
 -- callled in main draw loop
-function StateTrainerTest:draw()
+function SceneTrainerTest:draw()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.printf(response, 0, 110, 320, "center")
 end
 
-return StateTrainerTest
+return SceneTrainerTest

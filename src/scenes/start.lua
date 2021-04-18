@@ -7,29 +7,29 @@ local sound_move = love.audio.newSource("assets/move.wav", "static")
 local sound_ok = love.audio.newSource("assets/ok.wav", "static")
 local pointer = love.graphics.newImage("assets/pointer.png")
 
-local StateStart = {}
+local SceneStart = {}
 
 local hasContinue = false
 local currentChoice = 0
 
 function doContinue()
-  set_current_state(PLAYER.state)
+  set_current_scene(PLAYER.scene)
 end
 
 function doNew()
-  PLAYER = { level = 0 }
+  PLAYER = { level = 0, scene = "welcome" }
   save_player()
-  set_current_state("welcome")
+  set_current_scene("welcome")
 end
 
 -- called when this loads
-function StateStart:load()
+function SceneStart:load()
   load_player()
   hasContinue = PLAYER and PLAYER.level > 0
 end
 
 -- called when a button is pressed
-function StateStart:pressed(button)
+function SceneStart:pressed(button)
   if hasContinue then
     if button == "up" or button == "down" then
       sound_move:play()
@@ -40,7 +40,7 @@ function StateStart:pressed(button)
       end
     end
     if button == "a" then
-      sound_ok.play()
+      sound_ok:play()
       if currentChoice == 0 then
         doContinue()
       else
@@ -49,14 +49,14 @@ function StateStart:pressed(button)
     end
   else
     if button == "a" then
-      sound_ok.play()
+      sound_ok:play()
       doNew()
     end
   end
 end
 
 -- callled in main draw loop
-function StateStart:draw()
+function SceneStart:draw()
   love.graphics.setColor(1, 1, 1, 1)
 
   if hasContinue then
@@ -74,10 +74,10 @@ end
 
 -- local lurker = require("lib.lurker")
 -- lurker.preswap = function(f)
---   set_current_state(gamestate_name)
+--   set_current_scene(gamescene_name)
 -- end
--- function StateStart:update()
+-- function SceneStart:update()
 --   lurker.update()
 -- end
 
-return StateStart
+return SceneStart

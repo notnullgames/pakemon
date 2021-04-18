@@ -3,7 +3,7 @@
 local flux = require('lib.flux')
 local cat = require('lib.cat')
 
-local StateIntro = {}
+local SceneIntro = {}
 
 local speed = 60
 local step = 1
@@ -46,7 +46,7 @@ function move_layer(time, data)
 end
 
 -- called when this loads
-function StateIntro:load()
+function SceneIntro:load()
   song:play()
   
   -- setup drop-animation for logo
@@ -66,8 +66,8 @@ function StateIntro:load()
   move_layer(10, foreground_info)
 end
 
--- called when some othe rstate is chosen
-function StateIntro:unload()
+-- called when some othe rscene is chosen
+function SceneIntro:unload()
   song:stop()
   if blink_tween then
     blink_tween:stop()
@@ -76,13 +76,13 @@ function StateIntro:unload()
 end
 
 -- called to update logic
-function StateIntro:update(dt, totaltime)
+function SceneIntro:update(dt, totaltime)
   flux.update(dt)
   cat.runL:update(dt)
 end
 
 -- callled in main draw loop
-function StateIntro:draw()
+function SceneIntro:draw()
   love.graphics.setColor(1, 1, 1, 1)
 
   love.graphics.draw(far_buildings, far_buildings_info.x, far_buildings_info.y)
@@ -102,11 +102,11 @@ function StateIntro:draw()
   love.graphics.printf("PRESS BUTTON", 0, 130, 320, "center")
 end
 
-function StateIntro:pressed(button)
+function SceneIntro:pressed(button)
   if button == "a" or button == "b" or button == "start" then
-    set_current_state("start")
+    set_current_scene("start")
   end
 end
 
 
-return StateIntro
+return SceneIntro

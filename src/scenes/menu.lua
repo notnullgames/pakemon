@@ -1,6 +1,6 @@
 -- this is a simple menu example
 
-local StateMenu = {}
+local SceneMenu = {}
 
 local current_selection = 1
 
@@ -25,12 +25,12 @@ local menu = {
 
 
 -- called when a button is pressed
-function StateMenu:pressed(button)
+function SceneMenu:pressed(button)
   if button == "a" then
     menu[current_selection].callback()
   end
   if button == "b" then
-    set_current_state("intro")
+    set_current_scene("intro")
   end
 
   if button == 'down' then
@@ -49,7 +49,7 @@ function StateMenu:pressed(button)
 end
 
 -- callled in main draw loop
-function StateMenu:draw()
+function SceneMenu:draw()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.setBackgroundColor( 0.1, 0.1, 0.1, 1 )
 
@@ -62,4 +62,4 @@ function StateMenu:draw()
   love.graphics.printf('-', 20, 40 + ((current_selection-1) * 14), 300)
 end
 
-return StateMenu
+return SceneMenu

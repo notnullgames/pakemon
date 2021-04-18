@@ -1,6 +1,6 @@
 -- fake charging screen
 
-local StateCharging = {}
+local SceneCharging = {}
 
 local scale = 10
 local sheet = love.graphics.newImage("assets/battery.png")
@@ -11,25 +11,25 @@ local bar_grey = love.graphics.newQuad(2, 7, 2, 4, sheet)
 
 local do_red = false
 
--- called when some othe rstate is chosen
-function StateCharging:unload()
+-- called when some othe rscene is chosen
+function SceneCharging:unload()
 end
 
 -- called to update logic
-function StateCharging:update(dt, totaltime)
+function SceneCharging:update(dt, totaltime)
   do_red = math.floor(totaltime) % 2 == 0
 end
 
 -- called when a button is pressed
-function StateCharging:pressed(button)
+function SceneCharging:pressed(button)
 end
 
 -- called when a button is released
-function StateCharging:released(button)
+function SceneCharging:released(button)
 end
 
 -- callled in main draw loop
-function StateCharging:draw()
+function SceneCharging:draw()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.setBackgroundColor( 0.1, 0.1, 0.1, 1 )
   
@@ -45,4 +45,4 @@ function StateCharging:draw()
   love.graphics.draw(sheet, bar_grey, 210, 100, 0, scale, scale)
 end
 
-return StateCharging
+return SceneCharging

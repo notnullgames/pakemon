@@ -1,15 +1,15 @@
 -- this is just a simple scene-loader, so you can drag a scene (lua) file onto the window to test
 -- press F11
 
-local StateSceneLoader = {}
+local SceneSceneLoader = {}
 
 local files = {}
 local current_selection = 1
 
 -- called to update logic
-function StateSceneLoader:update(dt, totaltime)
+function SceneSceneLoader:update(dt, totaltime)
   files = {}
-  local fl = love.filesystem.getDirectoryItems("states")
+  local fl = love.filesystem.getDirectoryItems("scenes")
   for f,file in pairs(fl) do
     local name = file:gsub('.lua$','')
     if name and name ~= 'template' and name ~= 'sceneloader' then
@@ -19,12 +19,12 @@ function StateSceneLoader:update(dt, totaltime)
 end
 
 -- called when a button is pressed
-function StateSceneLoader:pressed(button)
+function SceneSceneLoader:pressed(button)
   if button == "a" then
-    set_current_state(files[current_selection])
+    set_current_scene(files[current_selection])
   end
   if button == "b" then
-    set_current_state("intro")
+    set_current_scene("intro")
   end
 
   if button == 'down' then
@@ -43,7 +43,7 @@ function StateSceneLoader:pressed(button)
 end
 
 -- callled in main draw loop
-function StateSceneLoader:draw()
+function SceneSceneLoader:draw()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.setBackgroundColor( 0.1, 0.1, 0.1, 1 )
   
@@ -54,4 +54,4 @@ function StateSceneLoader:draw()
   love.graphics.printf('-', 20, 40 + ((current_selection-1) * 14), 300)
 end
 
-return StateSceneLoader
+return SceneSceneLoader
