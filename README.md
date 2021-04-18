@@ -4,7 +4,7 @@ Short for "packet monitor/monster". Gamified fun device/platform for hacking tec
 
 ## installation
 
-You should have love in your path. Run `love src` to strart frontend.
+You should have love in your path. Run `love src` to start frontend.
 
 ## local dev
 
