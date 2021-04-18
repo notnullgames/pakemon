@@ -9,7 +9,7 @@ local StateStart = {}
 local hasContinue = false
 local currentChoice = 0
 
-function doContine()
+function doContinue()
   set_current_state(PLAYER.state)
 end
 
@@ -37,7 +37,7 @@ function StateStart:pressed(button)
     end
     if button == "a" then
       if currentChoice == 0 then
-        doContine()
+        doContinue()
       else
         doNew()
       end
