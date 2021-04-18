@@ -1,3 +1,5 @@
+-- fake charging screen
+
 local StateCharging = {}
 
 local scale = 10

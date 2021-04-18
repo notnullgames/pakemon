@@ -1,3 +1,5 @@
+-- initial intro (cat/city scene)
+
 local flux = require('lib.flux')
 local cat = require('lib.cat')
 
@@ -102,7 +104,7 @@ end
 
 function StateIntro:pressed(button)
   if button == "a" or button == "b" or button == "start" then
-    set_current_state("menu")
+    set_current_state("start")
   end
 end
 

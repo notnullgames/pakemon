@@ -1,4 +1,5 @@
 -- this is just a simple scene-loader, so you can drag a scene (lua) file onto the window to test
+-- press F11
 
 local StateSceneLoader = {}
 

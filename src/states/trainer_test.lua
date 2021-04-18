@@ -1,15 +1,16 @@
+-- this shows how to interact with trainer
+
 local trainer = require('lib.trainer')
 
 local StateTrainerTest = {}
 
 local updaterate = 4 -- how long to wait, in seconds, before requesting an update
 
-local response = ""
+local response = "Please wait..."
 local t = 0
 
 -- called when this loads
 function StateTrainerTest:load()
-  response = trainer("hello", "Pakemon" .. os.time())
 end
 
 -- called when some othe rstate is chosen

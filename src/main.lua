@@ -80,7 +80,6 @@ end
 
 function love.load()
     set_current_state("intro")
-    load_player()
 end
 
 local totaltime = 0
