@@ -6,53 +6,6 @@ Here are some ideas we are mulling over.
 
 The Pakémon runs [love2d](https://love2d.org/) to manage a collection of activities. A few libraries are available for use in mini-games or activities, so you can keep the same look/feel, if you want, but also feel free to go crazy and make yours completely differnt than the rest. Think of it as the geocities of hacking toys.
 
-**TODO**: document dependencies
-* Lua
-  * [love2d](https://love2d.org/wiki/love)
-  * [hump](https://github.com/vrld/hump)
-  * [anim8](https://github.com/kikito/anim8)
-
-
-* hump [docs](https://hump.readthedocs.io/en/latest/)
-  * [camera](https://hump.readthedocs.io/en/latest/camera.html)
-  * [class](https://hump.readthedocs.io/en/latest/class.html)
-  * [gamestate](https://hump.readthedocs.io/en/latest/gamestate.html)
-  * [timer](https://hump.readthedocs.io/en/latest/timer.html)
-```lua
-Camera = require "lib.hump.camera"
-Class = require "lib.hump.class"
-Gamestate = require "lib.hump.gamestate"
-Timer = require "lib.hump.timer"
-```
-
-* anim8 [docs](https://github.com/kikito/anim8#example)
-```lua
-anim8 = require "lib.anim8"
-```
-
-* utils
-  * * [dump1090](https://github.com/adsbxchange/dump1090-mutability)
-
-**TODO**: document shared API
-
-**TODO**: document dev-tools
-* Lua
-  * [lurker](https://github.com/rxi/lurker)
-```lua
-lurker = require "lib.lurker.lurker"
-```
-
-**TODO**: document making a few types of plugins
-
-## related
-
-These other projects are related:
-
-### plugins
-
-If you prefix your plugin repo-name with `pakemon-plugin-`, it'll show up on the device for easy install, under "Community Plugins".
-
-**TODO**
 
 ### tools
 
