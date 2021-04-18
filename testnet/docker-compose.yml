@@ -10,9 +10,12 @@ services:
     
     # this is the demo backend
     pakemon:
-        build: .
+        image: python:alpine
         ports:
-            - "12345:12345"
+            - 12345:12345/udp
+        volumes:
+            - ./:/server
+        command: python3 /server/server.py
         networks:
             - pakemon
 
