@@ -19,7 +19,11 @@ function trainer(...)
   print(table.show(cmd, "cmd"))
   print(table.show(args, "args"))
   udp:send(json.encode({ cmd = cmd, args = args }))
-  return json.decode(udp:receive())
+  local out = json.decode(udp:receive())
+  -- close the connection to free up port-usage
+  udp:close()
+  udp = nil
+  return out
 end
 
 return trainer
