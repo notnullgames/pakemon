@@ -3,6 +3,8 @@
 local patchy = require("lib.patchy")
 
 local rpg = patchy.load("assets/rpg.9.png")
+local sound_move = love.audio.newSource("assets/move.wav", "static")
+local sound_ok = love.audio.newSource("assets/ok.wav", "static")
 
 local StateStart = {}
 
@@ -29,6 +31,7 @@ end
 function StateStart:pressed(button)
   if hasContinue then
     if button == "up" or button == "down" then
+      sound_move:play()
       if currentChoice == 1 then
         currentChoice = 0
       else
@@ -36,6 +39,7 @@ function StateStart:pressed(button)
       end
     end
     if button == "a" then
+      sound_ok.play()
       if currentChoice == 0 then
         doContinue()
       else
@@ -44,6 +48,7 @@ function StateStart:pressed(button)
     end
   else
     if button == "a" then
+      sound_ok.play()
       doNew()
     end
   end
