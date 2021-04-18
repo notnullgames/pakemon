@@ -116,8 +116,6 @@ level up your buddy for a special ability.
 * things should be pretty auto, with an optional manual mode out of the box.
 * there should be a "bring your own UX" potential.  
 
-## AI concept
-to rework the pwnagotchi's [A2C](https://hackernoon.com/intuitive-rl-intro-to-advantage-actor-critic-a2c-4ff545978752) [AI](https://pwnagotchi.ai/usage/#training-the-ai) to support DeepExploit. 
 
 
 ## utils/tools/frameworks
