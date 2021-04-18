@@ -13,7 +13,12 @@ function trainer(...)
     -- TODO: this should come from env-var or something
     udp:setpeername("127.0.0.1", 12345)
   end
-  udp:send(json.encode(arg))
+  local cmd = ...
+  local args = {select(2, ...)}
+  print("trainer")
+  print(table.show(cmd, "cmd"))
+  print(table.show(args, "args"))
+  udp:send(json.encode({ cmd = cmd, args = args }))
   return json.decode(udp:receive())
 end
 

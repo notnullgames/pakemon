@@ -18,6 +18,7 @@ services:
         command: python3 /server/server.py
         networks:
             - pakemon
+        tty: true
 
     # these are targets:
     nowasp:
