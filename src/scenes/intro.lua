@@ -12,7 +12,7 @@ local title = love.graphics.newImage("assets/title.png")
 local far_buildings = love.graphics.newImage("assets/far-buildings.png")
 local back_buildings = love.graphics.newImage("assets/back-buildings.png")
 local foreground = love.graphics.newImage("assets/foreground.png")
-local song = love.audio.newSource("assets/the_golden_ages.mod", "static")
+local song = love.audio.newSource("assets/the_golden_ages.mod", "stream")
 local sound_move = love.audio.newSource("assets/move.wav", "static")
 
 -- these are animated using tweens, then used to draw things

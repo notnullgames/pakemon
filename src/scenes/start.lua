@@ -75,7 +75,7 @@ end
 
 -- local lurker = require("lib.lurker")
 -- lurker.preswap = function(f)
---   set_current_scene(gamescene_name)
+--   set_current_scene(scene_name)
 -- end
 -- function SceneStart:update()
 --   lurker.update()

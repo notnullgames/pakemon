@@ -13,8 +13,8 @@ PLAYER = { level = 0, scene = "welcome" }
 
 
 function input_pressed(button)
-    if current_gamescene and current_gamescene.pressed then
-        current_gamescene:pressed(button)
+    if current_scene and current_scene.pressed then
+        current_scene:pressed(button)
     end
 
     if button == 'dev' then
@@ -26,7 +26,7 @@ function input_pressed(button)
     end
 
     if button == 'reload' then
-        set_current_scene(gamescene_name)
+        set_current_scene(scene_name)
     end
 
     if DEV then
@@ -35,8 +35,8 @@ function input_pressed(button)
 end
 
 function input_released(button)
-    if current_gamescene and current_gamescene.released then
-        current_gamescene:released(button)
+    if current_scene and current_scene.released then
+        current_scene:released(button)
     end
 
     if DEV then
@@ -44,25 +44,25 @@ function input_released(button)
     end
 end
 
--- set the current gamescene, unload the old one
+-- set the current scene, unload the old one
 function set_current_scene(name)
     if DEV then
         print('Scene: ' .. name)
         print(c('%{green}Scene:  %{reset}' .. name))
     end
-    if current_gamescene and current_gamescene.unload then
-        current_gamescene:unload(newscene)
+    if current_scene and current_scene.unload then
+        current_scene:unload(newscene)
     end
-    current_gamescene = nil
+    current_scene = nil
     collectgarbage('collect')
-    gamescene_name = name
+    scene_name = name
     local code, errr = love.filesystem.load('scenes/' .. name .. '.lua')
     if err and DEV then
         print(c('%{red}%Error:  %{reset}' .. err))
     end
-    current_gamescene = code()
-    if current_gamescene.load then
-        current_gamescene:load()
+    current_scene = code()
+    if current_scene.load then
+        current_scene:load()
     end
 end
 
@@ -85,14 +85,14 @@ end
 local totaltime = 0
 function love.update(dt)
     totaltime = totaltime + dt
-    if current_gamescene.update then
-        current_gamescene:update(dt, totaltime)
+    if current_scene.update then
+        current_scene:update(dt, totaltime)
     end
 end
 
 function love.draw()
-    if current_gamescene.draw then
-        current_gamescene:draw()
+    if current_scene.draw then
+        current_scene:draw()
     end
     
     love.graphics.setColor( 1, 1, 1, 0.5 )
