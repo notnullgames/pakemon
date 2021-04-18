@@ -38,6 +38,7 @@ end
 -- callled in main draw loop
 function SceneTrainerTest:draw()
   love.graphics.setColor(1, 1, 1, 1)
+  love.graphics.setBackgroundColor( 0.1, 0.1, 0.1, 1 )
   love.graphics.printf(response, 0, 110, 320, "center")
 end
 

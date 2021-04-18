@@ -84,6 +84,7 @@ end
 -- callled in main draw loop
 function SceneIntro:draw()
   love.graphics.setColor(1, 1, 1, 1)
+  love.graphics.setBackgroundColor( 0.1, 0.1, 0.1, 1 )
 
   love.graphics.draw(far_buildings, far_buildings_info.x, far_buildings_info.y)
   love.graphics.draw(far_buildings, far_buildings_info.x-far_buildings_info.w, far_buildings_info.y)

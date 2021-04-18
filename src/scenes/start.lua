@@ -58,6 +58,7 @@ end
 -- callled in main draw loop
 function SceneStart:draw()
   love.graphics.setColor(1, 1, 1, 1)
+  love.graphics.setBackgroundColor( 0.1, 0.1, 0.1, 1 )
 
   if hasContinue then
     rpg:draw(100, 86, 120, 65)
