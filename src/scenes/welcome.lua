@@ -1,13 +1,17 @@
 -- this should be a welcome animation (start of new game)
 
+local song = love.audio.newSource("assets/pokemon.xm", "stream")
+
 local SceneWelcome = {}
 
 -- called when this loads
 function SceneWelcome:load()
+  song:play()
 end
 
 -- called when some othe rscene is chosen
 function SceneWelcome:unload()
+  song:stop()
 end
 
 -- called to update logic
