@@ -9,7 +9,7 @@ There is a [web-build of the app](https://pakemon.surge.sh/), but currently many
 
 There is a Makefile included with a few targets for dev. Run `make` for help.
 
-There is a docker-compose network you can explore, use `docker-compose exec pakemon bash` to get a nice console on the main entry-point machine (running kali.)
+There is a docker-compose network you can explore, use `make interrogate` to get a nice console on an entry-point machine (running kali) inside the network.
 
 
 ## keys
