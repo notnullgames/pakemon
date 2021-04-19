@@ -1,6 +1,6 @@
 -- this should be a welcome animation (start of new game)
 
-local song = love.audio.newSource("assets/pokemon.xm", "stream")
+local song = love.audio.newSource("assets/pokemon.xm", "static")
 
 local SceneWelcome = {}
 
