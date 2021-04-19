@@ -31,6 +31,6 @@ Directionals are arrows on keyboard.
 
 There are a few magic-keys, that are meant to be kind of like the equivilant keys in browser:
 
-- `F12` - enter "dev-mode" which will show FPS and approximate RAM of game (not the whole runtime, which you can see with `top` nix command.)
+- `F12` - enter "dev-mode" which will show FPS and approximate RAM of game (not the whole runtime, which you can see with `top` nix command.) It also shows keys pressed and other things like that. Good for working on pakemon.
 - `F11` - give you a list of all the scenes, so you can load one
 - `F5` - reload the current scene.
