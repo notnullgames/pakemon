@@ -14,7 +14,7 @@ There is a docker-compose network you can explore, use `make interrogate` to get
 
 ## keys
 
-The keys are mapped to feel like a retro-console. If you have a joystick, these should match.
+The keys are mapped to feel like a retro-console. If you have a gamepad, these should match.
 
 Buttons:
 
