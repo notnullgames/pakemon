@@ -31,6 +31,6 @@ Directionals are arrows on keyboard.
 
 There are a few magic-keys, that are meant to be kind of like the equivilant keys in browser:
 
-- `F12` will enter "dev-mode" whcih will show FPS and approximate RAM of game (not the whole runtime, whcih you can see in `top`.)
-- `F11` will give you a list of all the scenes, so you can load one
-- `F5` will reload the current scene.
+- `F12` - enter "dev-mode" which will show FPS and approximate RAM of game (not the whole runtime, which you can see with `top` nix command.)
+- `F11` - give you a list of all the scenes, so you can load one
+- `F5` - reload the current scene.
