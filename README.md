@@ -2,7 +2,7 @@
 
 Short for "packet monitor/monster". Gamified fun device/platform for hacking technology around you.
 
-See [this](https://github.com/notnullgames/pakemon/wiki/Projects) for a full breakdown of the Pakémon ecosystem.
+This is the frontend system for [pakemon](https://github.com/notnullgames/pakemon). See [this](https://github.com/notnullgames/pakemon/wiki/Projects) for a full breakdown of the Pakémon ecosystem.
 
 
 # frontend
