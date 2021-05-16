@@ -79,6 +79,7 @@ function load_player()
 end
 
 function love.load()
+    love.mouse.setVisible(false)
     set_current_scene("intro")
 end
 
@@ -90,7 +91,13 @@ function love.update(dt)
     end
 end
 
+-- this is a global pre-scaled canvas
+canvas = love.graphics.newCanvas(320, 240)
+
 function love.draw()
+    -- use scaled ccanvas
+    love.graphics.setCanvas(canvas)
+
     if current_scene.draw then
         current_scene:draw()
     end
@@ -103,5 +110,9 @@ function love.draw()
         -- show memory usage
         love.graphics.printf(string.format("%.2fK (RAM)", collectgarbage('count')), 0, 0, 320, "left")
     end
+
+    -- draw the canvas (pre-scaled)
+    love.graphics.setCanvas()
+    love.graphics.draw(canvas, 0, 0, 0, 2, 2)
 end
 
