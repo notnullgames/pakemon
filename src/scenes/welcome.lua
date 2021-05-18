@@ -29,6 +29,8 @@ end
 -- callled in main draw loop
 function SceneWelcome:draw()
   love.graphics.setColor(1, 1, 1, 1)
+  love.graphics.setBackgroundColor( 0.1, 0.1, 0.1, 1 )
+  love.graphics.clear()
   love.graphics.printf("Welcome Animation here", 0, 110, 320, "center")
 end
 
