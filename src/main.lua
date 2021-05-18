@@ -62,8 +62,8 @@ function set_current_scene(name)
     if err and DEV then
         print(c('%{red}%Error:  %{reset}' .. err))
     end
-    current_scene = code()
     requestClear = true
+    current_scene = code()
     if current_scene.load then
         current_scene:load()
     end
@@ -98,13 +98,13 @@ end
 canvas = love.graphics.newCanvas(320, 240)
 
 function love.draw()
-    -- use scaled ccanvas
-    love.graphics.setCanvas(canvas)
-
     if requestClear then
         requestClear = false
         love.graphics.clear()
     end
+    
+    -- use scaled ccanvas
+    love.graphics.setCanvas(canvas)
 
     if current_scene.draw then
         current_scene:draw()
