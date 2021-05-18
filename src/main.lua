@@ -11,6 +11,8 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 -- global savable player info 
 PLAYER = { level = 0, scene = "welcome" }
 
+-- next gframe clears screen
+local requestClear = false
 
 function input_pressed(button)
     if current_scene and current_scene.pressed then
@@ -61,6 +63,7 @@ function set_current_scene(name)
         print(c('%{red}%Error:  %{reset}' .. err))
     end
     current_scene = code()
+    requestClear = true
     if current_scene.load then
         current_scene:load()
     end
@@ -97,6 +100,11 @@ canvas = love.graphics.newCanvas(320, 240)
 function love.draw()
     -- use scaled ccanvas
     love.graphics.setCanvas(canvas)
+
+    if requestClear then
+        requestClear = false
+        love.graphics.clear()
+    end
 
     if current_scene.draw then
         current_scene:draw()
