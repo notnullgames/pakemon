@@ -98,13 +98,13 @@ end
 canvas = love.graphics.newCanvas(320, 240)
 
 function love.draw()
+    -- use scaled canvas
+    love.graphics.setCanvas(canvas)
+
     if requestClear then
         requestClear = false
         love.graphics.clear()
     end
-    
-    -- use scaled ccanvas
-    love.graphics.setCanvas(canvas)
 
     if current_scene.draw then
         current_scene:draw()
